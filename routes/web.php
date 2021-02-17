@@ -32,6 +32,8 @@ Route::group(['middleware'=>['auth','admin']], function (){
         Route::resource('users', 'UsersController');
         Route::resource('expense-category', 'ExpenseCategoryController');
         Route::resource('expense-manage', 'ExpenseManageController');
+        Route::resource('admin/voucherType','VoucherTypeController');
+        Route::resource('admin/transaction','TransactionController');
     });
     Route::get('admin/dashboard','Admin\DashboardController@index')->name('admin.dashboard');
 
@@ -41,9 +43,9 @@ Route::group(['middleware'=>['auth','admin']], function (){
     Route::get('admin/visa-stamped','Admin\OrderController@visaStamped')->name('admin.order.visa.stamped');
     Route::post('admin/passport-status/{id}','Admin\OrderController@PassportStatusChange')->name('admin.passport.status.change');
 
-    Route::get('admin/order-invoice/{order_id}','Admin\OrderController@showOrderInvoice')->name('admin.order.invoice');
+    Route::get('admin/order-invoice/{id}','Admin\OrderController@showOrderInvoice')->name('admin.order.invoice');
     Route::post('admin/order-invoice-store','Admin\OrderController@orderInvoiceStore')->name('admin.order.invoice_store');
-    Route::get('admin/order-invoice-view/{order_id}','Admin\OrderController@orderInvoiceView')->name('admin.order.invoice.view');
+    Route::get('admin/order-invoice-view/{id}','Admin\OrderController@orderInvoiceView')->name('admin.order.invoice.view');
     Route::get('admin/supplier_wise_passport/{id}','Admin\OrderController@supplierWisePassportList')->name('admin.order.supplier.wise.passport');
 
     Route::get('admin/training-card/index','Admin\TrainingCardController@index')->name('admin.training_card.index');
@@ -64,22 +66,59 @@ Route::group(['middleware'=>['auth','admin']], function (){
     Route::get('admin/visa-stock/group-wise-visa-edit/{id}','Admin\VisaStockController@GroupWiseVisaEdit')->name('admin.visa-stock.group_wise_visa_edit');
     Route::put('admin/visa-stock/group-wise-visa-edit-update/{id}','Admin\VisaStockController@GroupWiseVisaUpdate')->name('admin.visa-stock.group_wise_visa_edit_update');
 
-    Route::get('admin/accounts/account','Admin\AccountController@index')->name('admin.accounts');
-    Route::get('admin/accounts/take-payment/{order_id}','Admin\AccountController@TakePayment')->name('admin.accounts.invoice.take.payment');
-    Route::post('admin/accounts/take-payment-store', 'Admin\AccountController@store')->name('admin.accounts.take.payment.store');
 
-    Route::get('admin/accounts/income-statement', 'Admin\AccountController@IncomeStatement')->name('admin.accounts.income.statement');
+    Route::get('admin/account/coa_print','Admin\AccountController@coa_print')->name('account.coa_print');
+    Route::get('admin/account/cashbook','Admin\AccountController@cash_book_form');
+    Route::post('admin/account/cashbook','Admin\AccountController@cash_book_form')->name('account.cashbook');
+    Route::get('admin/account/cashbook-print/{date_from}/{date_to}','Admin\AccountController@cash_book_print');
 
-    Route::get('admin/accounts/cash-receive', 'Admin\AccountController@CashReceive')->name('admin.accounts.cash.receive');
-    Route::get('admin/accounts/bank-receive', 'Admin\AccountController@BankReceive')->name('admin.accounts.bank.receive');
-    Route::get('admin/accounts/agent-payment', 'Admin\AccountController@AgentPayment')->name('admin.accounts.agent.payment');
-    Route::get('admin/accounts/agent-payment-history/{agent_id}', 'Admin\AccountController@AgentPaymentHistory')->name('admin.accounts.agent.payment.history');
-    Route::post('admin/accounts/agent-payment-create', 'Admin\AccountController@AgentPaymentCreate')->name('admin.accounts.agent.payment.create');
-    Route::get('admin/accounts/balance-sheet', 'Admin\AccountController@BalanceSheet')->name('admin.accounts.balance.sheet');
+   // Route::resource('admin/voucherType','VoucherTypeController');
+   // Route::resource('admin/transaction','TransactionController');
+    //Route::get('account/voucher-invoice/{voucher_no}/{transaction_date}','TransactionController@voucher_invoice');
+    Route::get('admin/account/voucher-invoice/{voucher_type_id}/{voucher_no}','Admin\TransactionController@voucher_invoice');
+    Route::post('admin/account/transaction-delete/{voucher_type_id}/{voucher_no}','Admin\TransactionController@transactionDelete');
+    Route::get('admin/account/transaction-edit/{voucher_type_id}/{voucher_no}','Admin\TransactionController@transactionEdit');
+    Route::post('admin/account/transaction-update/{voucher_type_id}/{voucher_no}','Admin\TransactionController@transactionUpdate');
+    Route::get('admin/account/generalledger','Admin\TransactionController@general_ledger_form')->name('admin.account.generalledger');
+    Route::get('admin/get-transaction-head/{id}','Admin\AccountController@transaction_head');
+    Route::post('admin/account/general-ledger','Admin\TransactionController@view_general_ledger')->name('admin.account.general_ledger');
+    Route::get('admin/account/general-ledger-print/{headcode}/{date_from}/{date_to}','Admin\TransactionController@general_ledger_print');
+    Route::get('admin/account/trial-balance','Admin\TransactionController@trial_balance_form');
+    Route::get('admin/account/trial-balance-print/{date_from}/{date_to}','Admin\TransactionController@trial_balance_print');
+    Route::post('admin/account/trial-balance','Admin\TransactionController@view_trial_balance')->name('admin.account.trial_balance');
+    Route::get('admin/account/balance-sheet','Admin\TransactionController@balance_sheet');
+    Route::get('admin/account/balance-sheet-print','Admin\TransactionController@balance_sheet_print');
 
-    //need to store Take Payments Data.....
-    Route::get('admin/accounts/invoice-view/{order_id}','Admin\AccountController@orderInvoiceView')->name('admin.accounts.invoice.view');
-    Route::get('admin/accounts/pay-slip/{payment_id}','Admin\AccountController@TakePaymentSlip')->name('admin.accounts.pay.slip');
+    Route::get('admin/account/debit-voucher','Admin\AccountController@debit_voucher_form')->name('admin.account.debit.voucher');
+    Route::post('admin/account/debit-voucher','Admin\AccountController@view_debit_voucher')->name('admin.account.debit_voucher');
+    Route::get('admin/account/debit-voucher-print/{headcode}/{date_from}/{date_to}','Admin\AccountController@debit_voucher_print');
+
+
+    Route::get('admin/account/credit-voucher','Admin\AccountController@credit_voucher_form')->name('admin.account.credit.voucher');
+    Route::post('admin/account/credit-voucher','Admin\AccountController@view_credit_voucher')->name('admin.account.credit_voucher');
+    Route::get('admin/account/credit-voucher-print/{headcode}/{date_from}/{date_to}','Admin\AccountController@credit_voucher_print');
+
+    Route::resource('admin/accounts','Admin\AccountController');
+    Route::get('admin/selectedform/{id}','Admin\AccountController@selectedform');
+    Route::get('admin/newform/{id}','Admin\AccountController@newform');
+    Route::post('admin/insert_coa','Admin\AccountController@insert_coa');
+
+//    Route::get('admin/accounts/account','Admin\AccountController@index')->name('admin.accounts');
+//    Route::get('admin/accounts/take-payment/{order_id}','Admin\AccountController@TakePayment')->name('admin.accounts.invoice.take.payment');
+//    Route::post('admin/accounts/take-payment-store', 'Admin\AccountController@store')->name('admin.accounts.take.payment.store');
+//
+//    Route::get('admin/accounts/income-statement', 'Admin\AccountController@IncomeStatement')->name('admin.accounts.income.statement');
+//
+//    Route::get('admin/accounts/cash-receive', 'Admin\AccountController@CashReceive')->name('admin.accounts.cash.receive');
+//    Route::get('admin/accounts/bank-receive', 'Admin\AccountController@BankReceive')->name('admin.accounts.bank.receive');
+//    Route::get('admin/accounts/agent-payment', 'Admin\AccountController@AgentPayment')->name('admin.accounts.agent.payment');
+//    Route::get('admin/accounts/agent-payment-history/{agent_id}', 'Admin\AccountController@AgentPaymentHistory')->name('admin.accounts.agent.payment.history');
+//    Route::post('admin/accounts/agent-payment-create', 'Admin\AccountController@AgentPaymentCreate')->name('admin.accounts.agent.payment.create');
+//    Route::get('admin/accounts/balance-sheet', 'Admin\AccountController@BalanceSheet')->name('admin.accounts.balance.sheet');
+//
+//    //need to store Take Payments Data.....
+//    Route::get('admin/accounts/invoice-view/{id}','Admin\AccountController@orderInvoiceView')->name('admin.accounts.invoice.view');
+//    Route::get('admin/accounts/pay-slip/{payment_id}','Admin\AccountController@TakePaymentSlip')->name('admin.accounts.pay.slip');
 
 });
 
@@ -142,6 +181,7 @@ Route::group(['middleware'=>['auth','executiveFour']], function (){
     Route::get('executive/four/accounts','ExecutiveFour\AccountController@index')->name('executive.four.accounts');
     Route::get('admin/accounts/take-payment/{order_id}','Admin\AccountController@TakePayment')->name('admin.accounts.invoice.take.payment');
     Route::post('admin/accounts/take-payment-store', 'Admin\AccountController@store')->name('admin.accounts.take.payment.store');
+
     //need to store Take Payments Data.....
     Route::get('admin/accounts/invoice-view/{order_id}','Admin\AccountController@orderInvoiceView')->name('admin.accounts.invoice.view');
     Route::get('admin/accounts/pay-slip/{payment_id}','Admin\AccountController@TakePaymentSlip')->name('admin.accounts.pay.slip');

@@ -39,6 +39,7 @@ class OrderController extends Controller
             ->select('groups.id','groups.name','groups.gr','group_wise_visas.group_id')
             ->groupBy('group_wise_visas.group_id')
             ->get();
+
         //$groups = Group::all();
         if (!empty($sup_id)){
             $passenger = PassengerDetails::where('supplier_id',$sup_id)->where('status',0)->get();
@@ -124,11 +125,11 @@ class OrderController extends Controller
                 $orderDetails->supplier_id = $request->supplier_id;
                 $orderDetails->passenger_details_id = $request->passenger_id[$i];
                 $orderDetails->group_id = $request->group_id[$i];
-                $orderDetails->photo_date = $request->photo_date[$i];
+//                $orderDetails->photo_date = $request->photo_date[$i];
                 $orderDetails->pc = $request->pc[$i];
-                $orderDetails->pc_date = $request->pc_date[$i];
+//                $orderDetails->pc_date = $request->pc_date[$i];
                 $orderDetails->mp = $request->mc[$i];
-                $orderDetails->mp_date = $request->mc_date[$i];
+    //                $orderDetails->mp_date = $request->mc_date[$i];
 
                 if (!empty($request->img[$i])){
                     $image = $request->img[$i];
@@ -155,7 +156,7 @@ class OrderController extends Controller
     }
 
     public function showOrderInvoice($id){
-
+//dd('dd');
         $order = Order::find($id);
         $supplier = $order->supplier_id;
         $order_details = OrderDetail::where('order_id',$order->id)->get();

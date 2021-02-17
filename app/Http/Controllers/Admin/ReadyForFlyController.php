@@ -17,10 +17,12 @@ class ReadyForFlyController
         $orderDetails = OrderDetail::latest()
             ->where('tc','1')
             ->where('finger','1')
-            ->where('v_issue_date','!=', NULL)
+            //->where('v_issue_date','!=', NULL)
             ->where('manpower','!=', NULL)
             ->where('manpower_date','!=', NULL)
             ->get();
+
+       // dd($orderDetails);
 
         return view('backend.admin.ready-for-fly.index', compact('orderDetails'));
     }

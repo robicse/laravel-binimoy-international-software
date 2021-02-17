@@ -53,109 +53,116 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($agentDetails as $key => $agentDetail)
-                                @php
-                                $visa = App\VisaStock::where('agent_id',$agentDetail->id)->sum('quantity');
-                                $visaAmo = App\VisaStock::where('agent_id',$agentDetail->id)->sum('total_price');
-                                $visaPaid = App\VisaStock::where('agent_id',$agentDetail->id)->sum('pay_amount');
-                                $visaDue = App\VisaStock::where('agent_id',$agentDetail->id)->sum('due_amount');
-                                @endphp
+                            @foreach($agents as $key => $agent)
+{{--                                @php--}}
+{{--                                $visa = App\VisaStock::where('agent_id',$agent->id)->sum('quantity');--}}
+{{--                                $visaAmo = App\VisaStock::where('agent_id',$agent->id)->sum('total_price');--}}
+{{--                                $visaPaid = App\VisaStock::where('agent_id',$agent->id)->sum('pay_amount');--}}
+{{--                                $visaDue = App\VisaStock::where('agent_id',$agent->id)->sum('due_amount');--}}
+{{--                                $Due = App\TakeAgentPayment::where('agent_id',$agent->id)->get();--}}
+{{--                                $agent = DB::table('take_agent_payments')--}}
+{{--                                ->join('agent_details','agent_details.id','=','take_agent_payments.agent_id')--}}
+{{--                                //->where('take_agent_payments.agent_id',$agentDetail->id)--}}
+{{--                                ->get();--}}
+
+{{--                                //dd($agent);--}}
+{{--                                @endphp--}}
                                 <tr>
                                     <td>{{$key + 1}}</td>
-                                    <td>{{$agentDetail->name}}</td>
-                                    <td>{{$agentDetail->mobile}}</td>
-                                    <td>{{$visa}}</td>
-                                    <td>{{$visaAmo}}</td>
-                                    <td>{{$visaPaid}}</td>
-                                    <td>{{$visaDue}}</td>
+                                    <td>{{$agent->name}}</td>
+
+                                    <td>{{$agent->mobile }}</td>
+                                    <td>{{$agent->quantity}}</td>
+                                    <td>{{$agent->payable_amount}}</td>
+{{--                                    <td>{{$visaAmo}}</td>--}}
+{{--                                    <td>{{$visaPaid}}</td>--}}
+{{--                                    <td>{{$visaDue}}</td>--}}
                                     <td>
-                                        <a class="btn btn-danger waves-effect" href="{{route('admin.accounts.agent.payment.history',$agentDetail->id)}}">
+                                        <a class="btn btn-danger waves-effect" href="{{route('admin.accounts.agent.payment.history',$agent->id)}}">
                                             <i class="fa fa-server"></i>
                                         </a>
-                                        <button type="button" title="Agent Payment Create" class="btn btn-success" data-toggle="modal" data-target="#visaModal-{{$agentDetail->id}}">
+                                        <button type="button" title="Agent Payment Create" class="btn btn-success" data-toggle="modal" data-target="#visaModal-{{$agent->id}}">
                                             <i class="fa fa-plus-circle"></i>
                                         </button>
-                                       {{-- <a class="btn btn-success waves-effect" href="{{route('admin.accounts.agent.payment.create',$agentDetail->id)}}">
-                                            <i class="fa fa-plus-circle"></i>
-                                        </a>--}}
+{{--                                        <a class="btn btn-success waves-effect" href="{{route('admin.accounts.agent.payment.create',$agent->id)}}">--}}
+{{--                                            <i class="fa fa-plus-circle"></i>--}}
+{{--                                        </a>--}}
 
-                                        {{--<button class="btn btn-danger waves-effect" type="button"
-                                                onclick="deleteCat({{$group->id}})">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                        <form id="delete-form-{{$group->id}}" action="{{route('admin.group.destroy',$group->id)}}" method="POST" style="display: none;">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>--}}
+{{--                                        <button class="btn btn-danger waves-effect" type="button"--}}
+{{--                                                onclick="deleteCat({{$group->id}})">--}}
+{{--                                            <i class="fa fa-trash"></i>--}}
+{{--                                        </button>--}}
+{{--                                        <form id="delete-form-{{$group->id}}" action="{{route('admin.group.destroy',$group->id)}}" method="POST" style="display: none;">--}}
+{{--                                            @csrf--}}
+{{--                                            @method('DELETE')--}}
+{{--                                        </form>--}}
                                     </td>
                                 </tr>
 
-
                                 <!-- Modal -->
+{{--                                <div class="modal fade" id="visaModal-{{$agentDetail->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
+{{--                                    <div class="modal-dialog" role="document">--}}
+{{--                                        <div class="modal-content">--}}
+{{--                                            <div class="modal-header">--}}
+{{--                                                <h5 class="modal-title" id="exampleModalLabel">Take Payments From Agent</h5>--}}
+{{--                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                                                    <span aria-hidden="true">&times;</span>--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
+{{--                                            <form role="form" action="{{route('admin.accounts.agent.payment.create')}}" method="post" enctype="multipart/form-data">--}}
+{{--                                                @csrf--}}
+{{--                                                <div class="modal-body">--}}
 
-                                <div class="modal fade" id="visaModal-{{$agentDetail->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Take Payments From Agent</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form role="form" action="{{route('admin.accounts.agent.payment.create')}}" method="post" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="modal-body">
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label for="agent_id">Agent Name</label>--}}
+{{--                                                        <input type="hidden" class="form-control" name="agent_id" id="agent_id" value="{{$agentDetail->id}}">--}}
+{{--                                                        <input type="text" class="form-control" name="" id="" value="{{$agentDetail->name}}" readonly>--}}
+{{--                                                    </div>--}}
 
-                                                    <div class="form-group">
-                                                        <label for="agent_id">Agent Name</label>
-                                                        <input type="hidden" class="form-control" name="agent_id" id="agent_id" value="{{$agentDetail->id}}">
-                                                        <input type="text" class="form-control" name="" id="" value="{{$agentDetail->name}}" readonly>
-                                                    </div>
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label for="total_visa">Total Visa</label>--}}
+{{--                                                        <input type="text" class="form-control" name="total_visa" id="total_visa" value="{{$visa}}" readonly>--}}
+{{--                                                    </div>--}}
 
-                                                    <div class="form-group">
-                                                        <label for="total_visa">Total Visa</label>
-                                                        <input type="text" class="form-control" name="total_visa" id="total_visa" value="{{$visa}}" readonly>
-                                                    </div>
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label for="total_price">Total Price</label>--}}
+{{--                                                        <input type="text" class="form-control" name="total_price" id="total_price" value="{{$visaAmo}}" readonly>--}}
+{{--                                                    </div>--}}
 
-                                                    <div class="form-group">
-                                                        <label for="total_price">Total Price</label>
-                                                        <input type="text" class="form-control" name="total_price" id="total_price" value="{{$visaAmo}}" readonly>
-                                                    </div>
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label for="paid_amount">Paid Amount</label>--}}
+{{--                                                        <input type="text" class="form-control" name="paid_amount" id="paid_amount" value="{{$visaPaid}}" readonly>--}}
+{{--                                                    </div>--}}
 
-                                                    <div class="form-group">
-                                                        <label for="paid_amount">Paid Amount</label>
-                                                        <input type="text" class="form-control" name="paid_amount" id="paid_amount" value="{{$visaPaid}}" readonly>
-                                                    </div>
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label for="payable_amount">Payable Amount</label>--}}
+{{--                                                        <input type="text" class="form-control" name="payable_amount" id="payable_amount" value="{{$visaDue}}" readonly>--}}
+{{--                                                    </div>--}}
 
-                                                    <div class="form-group">
-                                                        <label for="payable_amount">Payable Amount</label>
-                                                        <input type="text" class="form-control" name="payable_amount" id="payable_amount" value="{{$visaDue}}" readonly>
-                                                    </div>
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label for="pay_amount">Pay Amount</label>--}}
+{{--                                                        <input type="number" class="form-control" name="pay_amount" id="pay_amount" max="" placeholder="Enter Price Per Piece" required>--}}
+{{--                                                    </div>--}}
 
-                                                    <div class="form-group">
-                                                        <label for="pay_amount">Pay Amount</label>
-                                                        <input type="number" class="form-control" name="pay_amount" id="pay_amount" max="{{$visaDue}}" placeholder="Enter Price Per Piece" required>
-                                                    </div>
-
-                                                    {{--<div class="form-group">
-                                                        <label for="due_amount">Due Amount</label>
-                                                        <input type="text" class="form-control" name="due_amount" id="due_amount" placeholder="Due Amount">
-                                                    </div>--}}
+{{--                                                    --}}{{--<div class="form-group">--}}
+{{--                                                        <label for="due_amount">Due Amount</label>--}}
+{{--                                                        <input type="text" class="form-control" name="due_amount" id="due_amount" placeholder="Due Amount">--}}
+{{--                                                    </div>--}}
 
 
-                                                    {{--<div class="form-group">
-                                                        <label for="quantity">Total Price</label>
-                                                        <input type="text" class="form-control" name="total_price" id="total_price" >
-                                                    </div>--}}
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                                    --}}{{--<div class="form-group">--}}
+{{--                                                        <label for="quantity">Total Price</label>--}}
+{{--                                                        <input type="text" class="form-control" name="total_price" id="total_price" >--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="modal-footer">--}}
+{{--                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+{{--                                                    <button type="submit" class="btn btn-primary">Save changes</button>--}}
+{{--                                                </div>--}}
+{{--                                            </form>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                             @endforeach
                             </tbody>

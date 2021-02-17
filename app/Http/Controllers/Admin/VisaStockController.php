@@ -6,6 +6,7 @@ use App\Group;
 use App\GroupWiseVisa;
 use App\AgentDetail;
 use App\PassengerDetails;
+use App\TakeAgentPayment;
 use App\VisaStock;
 //use App\Supplier;
 use Brian2694\Toastr\Facades\Toastr;
@@ -20,11 +21,7 @@ use Illuminate\Support\Facades\Validator;
 
 class VisaStockController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
+
     public function index()
     {
         $group = Group::all();
@@ -36,11 +33,6 @@ class VisaStockController
         return  view('backend.admin.visa_stock.index',compact('visaDetails','visaStocks','agent','group'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create()
     {
         //$groups = Group::latest()->get();
@@ -48,12 +40,7 @@ class VisaStockController
         return view('backend.admin.visa_stock.create',compact('agent'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
+
     public function store(Request $request)
     {
         //dd($request->all());
@@ -66,37 +53,41 @@ class VisaStockController
         Validator::make($request->all(), [
             'agent_id' => 'required',
         ]);
-
+        $invoice = mt_rand(111111,999999);
         $vstock = new VisaStock();
+        $vstock->invoice_id = $invoice;
         $vstock->agent_id = $request->agent_id;
         $vstock->quantity = $request->quantity;
         $vstock->per_piece_price = $request->per_piece_price;
         $vstock->total_price = $request->total_price;
         $vstock->pay_amount = $request->pay_amount;
         $vstock->due_amount = $request->due_amount;
+        $vstock->date = $request->date;
         $vstock->save();
+        $insert_id = $vstock->id;
+        if($insert_id)
+        {
+            $takePayment = new TakeAgentPayment();
+            $takePayment->visa_stock_id = $insert_id;
+            $takePayment->agent_id = $request->agent_id;
+            $takePayment->payable_amount = $request->total_price;
+            $takePayment->pay_amount =$request->pay_amount;
+            $takePayment->due_amount = $request->total_price - $request->pay_amount;
 
+            $takePayment->date = date('Y-m-d');
+            //dd($takePayment);
+            $takePayment->save();
+        }
         Toastr::success('Visa Quantity Stored Successfully','Success');
         return redirect()->route('admin.visa-stock.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
+
     public function edit($id)
     {
 //        $groups = Group::all();
@@ -107,13 +98,7 @@ class VisaStockController
         return view('backend.admin.visa_stock.edit', compact('vDetails','agent'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  int  $id
-     * @return Response
-     */
+
     public function update(Request $request, $id)
     {
         Validator::make($request->all(), [
@@ -134,12 +119,7 @@ class VisaStockController
         return redirect()->route('admin.visa-stock.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
+
     public function destroy($id)
     {
         $stock =  Stock::find($id);

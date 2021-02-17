@@ -42,7 +42,7 @@
                         @csrf
                         <div class="card-body">
                             <div class="row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-5">
                                     <label for="agent_id">Agent Name</label>
                                     {{--<input type="name" class="form-control" name="name" id="name" placeholder="Enter Group Name">--}}
                                     <select name="agent_id" id="agent_id" class="form-control select2" required>
@@ -53,9 +53,13 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-3">
                                     <label for="quantity">Quantity</label>
                                     <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Enter Quantity" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="date">Date</label>
+                                    <input type="text" class=" datepicker form-control " name="date" id="date" value="{{date('Y-m-d')}}" required>
                                 </div>
                             </div>
                             <div class="row">

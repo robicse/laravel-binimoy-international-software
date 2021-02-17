@@ -189,6 +189,7 @@
 @stop
 @push('js')
     <script>
+        window.print();
         function printData()
         {
             var divToPrint=document.getElementById("printTable");

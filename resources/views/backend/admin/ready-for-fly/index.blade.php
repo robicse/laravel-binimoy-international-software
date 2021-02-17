@@ -89,7 +89,6 @@
                                 <th>Supplier Name</th>
                                 <th>Paid Amount</th>
                                 <th>Due Amount</th>
-
                             </tr>
                             </tfoot>
                         </table>
@@ -112,7 +111,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-
 
     <script>
         $(document).ready(function() {

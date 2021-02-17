@@ -67,7 +67,7 @@
                                 <th>#Id</th>
                                 <th>Group Name</th>
                                 <th>Group Ref</th>
-                                <th>Available Visa</th>
+{{--                                <th>Available Visa</th>--}}
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -80,7 +80,7 @@
                                 <td>{{$key + 1}}</td>
                                 <td>{{$group->name}}</td>
                                 <td>{{$group->gr}}</td>
-                                <td class="click">
+{{--                                <td class="click">--}}
                                 @php
                                   $GroupVisa = App\GroupWiseVisa::where('group_id',$group->id)->groupBy('group_id')->sum('quantity');
 
@@ -88,8 +88,8 @@
                                   //$order_data += $order_data;
                                // $net_visa_quantity = $GroupVisa - $order_data;
                                 @endphp
-                                    <a href=""><strong>{{--{{$net_visa_quantity}}--}}</strong></a>
-                                </td>
+{{--                                    <a href=""><strong>--}}{{--{{$net_visa_quantity}}--}}{{--</strong></a>--}}
+{{--                                </td>--}}
                                 <td>
                                     <a class="btn btn-info waves-effect" href="{{route('admin.group.edit',$group->id)}}">
                                         <i class="fa fa-edit"></i>
@@ -111,7 +111,6 @@
                                 <th>#Id</th>
                                 <th>Group Name</th>
                                 <th>Group Ref</th>
-                                <th>Available Visa</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>

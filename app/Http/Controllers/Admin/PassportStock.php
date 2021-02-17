@@ -16,11 +16,6 @@ use Intervention\Image\Facades\Image;
 
 class PassportStock extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $passportStocks = Stock::sum('quantity');
@@ -28,12 +23,6 @@ class PassportStock extends Controller
         //dd($passengerDetails);
         return  view('backend.admin.passport_stock.index',compact('passengerDetails','passportStocks'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $groups = Group::latest()->get();
@@ -41,12 +30,6 @@ class PassportStock extends Controller
         return view('backend.admin.passport_stock.create',compact('groups','suppliers'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request,[
@@ -92,23 +75,13 @@ class PassportStock extends Controller
         return redirect()->route('admin.passport-stock.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
 //        $groups = Group::all();
@@ -118,13 +91,7 @@ class PassportStock extends Controller
         return view('backend.admin.passport_stock.edit', compact('pDetails'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $this->validate($request,[
@@ -156,12 +123,6 @@ class PassportStock extends Controller
         return redirect()->route('admin.passport-stock.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $stock =  Stock::find($id);
