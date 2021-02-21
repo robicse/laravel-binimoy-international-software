@@ -385,7 +385,7 @@ class AccountController extends Controller
         }
 //dd($cash_prevalance_data);
 //dd($cash_data_results);
-        return view('backend.account.cashbook', compact('cash_data_results', 'PreBalance', 'preDebCre','date_from','date_to'));
+        return view('backend.admin.account.cashbook', compact('cash_data_results', 'PreBalance', 'preDebCre','date_from','date_to'));
     }
 
     public function cash_book_print($date_from,$date_to)

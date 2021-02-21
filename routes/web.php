@@ -35,6 +35,9 @@ Route::group(['middleware'=>['auth','admin']], function (){
         Route::resource('admin/voucherType','VoucherTypeController');
         Route::resource('admin/transaction','TransactionController');
     });
+    Route::post('pay-due','Admin\VisaStockController@payDue')->name('pay.due');
+    Route::post('pay-order-due','Admin\OrderController@payOrderDue')->name('pay.order.due');
+
     Route::get('admin/dashboard','Admin\DashboardController@index')->name('admin.dashboard');
 
     Route::get('admin/order/index','Admin\OrderController@index')->name('admin.order.index');

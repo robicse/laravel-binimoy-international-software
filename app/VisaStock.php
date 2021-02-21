@@ -11,9 +11,9 @@ class VisaStock extends Model
     /*public function group()
     {
         return $this->belongsTo('App\Group','group_id');
-    }
-    public function supplier()
-    {
-        return $this->belongsTo('App\Supplier','supplier_id');
     }*/
+    public function agent()
+    {
+        return $this->belongsTo('App\AgentDetail','agent_id');
+    }
 }

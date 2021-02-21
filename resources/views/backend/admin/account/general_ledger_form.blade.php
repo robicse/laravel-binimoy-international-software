@@ -15,7 +15,7 @@
                             {{ session('response') }}
                         </div>
                     @endif
-                    <form method="post" action="{{ route('account.general_ledger') }}">
+                    <form method="post" action="{{ route('admin.account.general_ledger') }}">
                         @csrf
                         <div class="form-group row">
                             <label class="control-label col-md-3 text-right">General Ledger Head</label>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Due;
 use App\Group;
 use App\GroupWiseVisa;
 use App\AgentDetail;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Validator;
 
 //use Intervention\Image\Facades\Image;
 
-class VisaStockController
+class VisaStockController extends Controller
 {
 
     public function index()
@@ -65,26 +66,34 @@ class VisaStockController
         $vstock->date = $request->date;
         $vstock->save();
         $insert_id = $vstock->id;
-        if($insert_id)
-        {
-            $takePayment = new TakeAgentPayment();
-            $takePayment->visa_stock_id = $insert_id;
-            $takePayment->agent_id = $request->agent_id;
-            $takePayment->payable_amount = $request->total_price;
-            $takePayment->pay_amount =$request->pay_amount;
-            $takePayment->due_amount = $request->total_price - $request->pay_amount;
-
-            $takePayment->date = date('Y-m-d');
-            //dd($takePayment);
-            $takePayment->save();
-        }
+        // due
+        $due = new Due();
+        $due->ref_id = $insert_id;
+        $due->invoice_no = $invoice;
+        $due->total_amount =$request->total_price;
+        $due->paid_amount = $request->pay_amount;
+        $due->due_amount = $request->due_amount;
+        $due->save();
         Toastr::success('Visa Quantity Stored Successfully','Success');
         return redirect()->route('admin.visa-stock.index');
     }
+//    public function orderInvoiceView($id){
+//
+//        $order = Order::find($id);
+//        $supplier = $order->supplier_id;
+//        $order_details = OrderDetail::where('order_id',$order->id)->get();
+//        return view('backend.admin.order.order_invoice_view', compact('order','supplier','order_details'));
+//
+//
+//    }
 
     public function show($id)
     {
-        //
+       // dd($id);
+        $agent = AgentDetail::all();
+        $vDetails = VisaStock::find($id);
+       // dd($vDetails);
+        return view('backend.admin.visa_stock.invoice', compact('vDetails','agent'));
     }
 
 
@@ -193,6 +202,30 @@ class VisaStockController
 
         Toastr::success('Visa Quantity Stored Successfully','Success');
         return redirect()->route('admin.visa-stock.index');
+    }
+    public function payDue(Request $request){
+        //dd($request->all());
+        $vstock_id = $request->visa_stock_id;
+        $vstock = VisaStock::find($vstock_id);
+
+        $total_amount=$vstock->total_price;
+        $paid_amount=$vstock->pay_amount;
+
+        $vstock->pay_amount=$paid_amount+$request->new_paid;
+        $vstock->due_amount=$total_amount-($paid_amount+$request->new_paid);
+        $vstock->update();
+
+        $due = new Due();
+        $due->ref_id = $vstock->id;
+       // $due->invoice_no = $vstock->invoice_no;
+        $due->total_amount =$vstock->total_price;
+        $due->paid_amount = $request->new_paid;
+        $due->due_amount = $total_amount-($paid_amount+$request->new_paid);
+        $due->save();
+
+        Toastr::success('Due Pay Successfully', 'Success');
+        return redirect()->back();
+
     }
 
 

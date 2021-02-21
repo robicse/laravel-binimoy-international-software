@@ -73,6 +73,8 @@
                                 <th>Quantity</th>
                                 <th>Per Piece Price</th>
                                 <th>Total Price</th>
+                                <th>Paid Amount</th>
+                                <th>Due</th>
                                 <th>Available Visa</th>
                                 <th>Action</th>
                             </tr>
@@ -110,6 +112,14 @@
                                     <td>{{!empty($vDetails->quantity)?$vDetails->quantity:''}}</td>
                                     <td>{{!empty($vDetails->per_piece_price)?$vDetails->per_piece_price:''}}</td>
                                     <td>{{!empty($vDetails->total_price)?$vDetails->total_price:''}}</td>
+                                    <td>{{!empty($vDetails->pay_amount)?$vDetails->pay_amount:''}}</td>
+                                    <td>{{!empty($vDetails->due_amount)?$vDetails->due_amount:''}}</td>
+                                    <td>
+                                        {{ $vDetails->due_amount}}
+                                        @if($vDetails->total_price != $vDetails->pay_amount)
+                                            <a href="" class="btn btn-warning btn-sm mx-1" data-toggle="modal" data-target="#exampleModal-<?= $vDetails->id;?>"> Pay Due</a>
+                                        @endif
+                                    </td>
                                     <td style="color:darkgreen; font-size: 20px;"><b>{{!empty($available_quantity1)?$available_quantity1:''}}</b></td>
                                     <td>
                                         <a class="btn btn-success waves-effect" href="{{route('admin.visa-stock.visa_divided',$vDetails->id)}}">
@@ -117,6 +127,9 @@
                                         </a>
                                         <a class="btn btn-info waves-effect" href="{{route('admin.visa-stock.edit',$vDetails->id)}}">
                                             <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a class="btn btn-info waves-effect" href="{{route('admin.visa-stock.show',$vDetails->id)}}">
+                                           <b>show</b>
                                         </a>
                                         <button type="button" title="Visa Group Wise Divided" class="btn btn-primary" data-toggle="modal" data-target="#visaModal-{{$vDetails->id}}">
                                             <i class="fa fa-random"></i>
@@ -220,7 +233,60 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="modal fade" id="exampleModal-{{$vDetails->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Pay Due</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{route('pay.due')}}" method="post">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label for="due">Enter Due Amount</label>
+                                                        <input type="hidden" class="form-control" name="visa_stock_id" value="{{$vDetails->id}}">
+                                                        <input type="number" class="form-control" id="due" aria-describedby="emailHelp" name="new_paid" min="" max="{{$vDetails->due_amount}}" placeholder="Enter Amount">
+                                                    </div>
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label for="payment_type">Payment Type</label>--}}
+{{--                                                        <select name="payment_type" id="payment_type" class="form-control" required>--}}
+{{--                                                            <option value="Cash" selected>Cash</option>--}}
+{{--                                                            <option value="Check">Check</option>--}}
+{{--                                                        </select>--}}
+{{--                                                        <span>&nbsp;</span>--}}
+{{--                                                        <input type="text" name="check_number" id="check_number" class="form-control" placeholder="Check Number">--}}
+{{--                                                        <span>&nbsp;</span>--}}
+{{--                                                        <input type="text" name="check_date" id="check_date" class="datepicker form-control" placeholder="Issue Deposit Date ">--}}
+{{--                                                    </div>--}}
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        @push('js')
+{{--                                            <script>--}}
+{{--                                                $(function() {--}}
+{{--                                                    $('#check_number').hide();--}}
+{{--                                                    $('#check_date').hide();--}}
+{{--                                                    $('#payment_type').change(function(){--}}
+{{--                                                        if($('#payment_type').val() == 'Check') {--}}
+{{--                                                            $('#check_number').show();--}}
+{{--                                                            $('#check_date').show();--}}
+{{--                                                        } else {--}}
+{{--                                                            $('#check_number').val('');--}}
+{{--                                                            $('#check_number').hide();--}}
+{{--                                                            $('#check_date').hide();--}}
+{{--                                                        }--}}
+{{--                                                    });--}}
+{{--                                                });--}}
+{{--                                            </script>--}}
+                                        @endpush
+                                    </div>
+                                </div>
                             @endforeach
                             </tbody>
                             <tfoot>

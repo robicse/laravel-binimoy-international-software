@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-12">
             <div class="tile">
-                <form method="post" action="{{ route('account.trial_balance') }}">
+                <form method="post" action="{{ route('admin.account.trial_balance') }}">
                     @csrf
                     <div class="form-group row">
                         <label class="control-label col-md-3 text-right">From</label>

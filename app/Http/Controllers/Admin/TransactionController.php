@@ -236,7 +236,7 @@ class TransactionController extends Controller
         $general_ledger_account_nos = DB::table('accounts')->where('IsGL', '1')->Orderby('HeadName', 'asc')->get();
         //dd($accounts);
 
-        return view('backend.account.general_ledger_form', compact('general_ledger_account_nos'));
+        return view('backend.admin.account.general_ledger_form', compact('general_ledger_account_nos'));
     }
     public function view_general_ledger(Request $request)
     {
@@ -370,7 +370,7 @@ class TransactionController extends Controller
 
     public function trial_balance_form()
     {
-        return view('backend.account.trial_balance_form');
+        return view('backend.admin.account.trial_balance_form');
     }
 
     public function view_trial_balance(Request $request)

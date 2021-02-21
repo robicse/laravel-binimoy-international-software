@@ -72,14 +72,14 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item" style="padding-top: 7px;">
-                        <a href="{{route('admin.order.index')}}" class="nav-link {{request()->is('admin/order*') ? 'active' : '' }}">
-                            <i class="nav-icon fa fa-shopping-cart"></i>
-                            <p>
-                                Passport Stamping
-                            </p>
-                        </a>
-                    </li>
+{{--                    <li class="nav-item" style="padding-top: 7px;">--}}
+{{--                        <a href="{{route('admin.order.index')}}" class="nav-link {{request()->is('admin/order*') ? 'active' : '' }}">--}}
+{{--                            <i class="nav-icon fa fa-shopping-cart"></i>--}}
+{{--                            <p>--}}
+{{--                                Passport Stamping--}}
+{{--                            </p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
 
                     <li class="nav-item" style="padding-top: 7px;">
                         <a href="{{route('admin.order.visa.stamped')}}" class="nav-link {{request()->is('admin/visa-stamped*') ? 'active' : '' }}" >
@@ -116,14 +116,14 @@
                         </a>
                     </li>
 
-                    {{--<li class="nav-item" style="border-bottom: 1px solid #4f5962;">
-                        <a href="{{route('admin.accounts')}}" class="nav-link {{Request::is('admin/accounts*') ? 'active' : ''}}">
-                            <i class="nav-icon fa fa-bank"></i>
-                            <p>
-                                Accounts
-                            </p>
-                        </a>
-                    </li>--}}
+{{--                    --}}{{--<li class="nav-item" style="border-bottom: 1px solid #4f5962;">--}}
+{{--                        <a href="{{route('admin.accounts')}}" class="nav-link {{Request::is('admin/accounts*') ? 'active' : ''}}">--}}
+{{--                            <i class="nav-icon fa fa-bank"></i>--}}
+{{--                            <p>--}}
+{{--                                Accounts--}}
+{{--                            </p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
 {{--                    <li class="nav-item has-treeview" style="border-bottom: 1px solid #4f5962; padding-top: 7px;">--}}
 {{--                        <a href="#" class="nav-link">--}}
 {{--                            <i class="nav-icon fa fa-th"></i>--}}
@@ -189,18 +189,50 @@
 {{--                            </li>--}}
 {{--                        </ul>--}}
 {{--                    </li>--}}
-                    <li class="treeview{{Request::is('admin/account/coa_print*') || Request::is('admin/account/coa_print*')|| Request::is('admin/transaction*')|| Request::is('admin/account/cashbook*')|| Request::is('admin/account/trial-balance*')|| Request::is('admin/account/credit-voucher*') || Request::is('admin/account/debit-voucher*') || Request::is('admin/account/generalledger*')  ? ' is-expanded': ''}}"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text-o"></i> <span class="app-menu__label">Accounts </span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li  style="background-color: gray"><a class="app-menu__item" href="{{ route('admin.transaction.create') }}"><span class="app-menu__label">Posting</span></a></li>
-                            <li  style="background-color: gray"><a class="app-menu__item" href="{{ route('admin.transaction.index') }}"><span class="app-menu__label">Posting List</span></a></li>
-                            <li  style="background-color: gray"><a class="app-menu__item" href="{!! URL::to('admin/account/cashbook') !!}"><span class="app-menu__label">Cash Book</span></a></li>
-                            <li  style="background-color: gray"><a class="app-menu__item" href="{{ route('admin.account.generalledger') }}"><span class="app-menu__label">Ledger</span></a></li>
-                            {{--                <li  style="background-color: gray"><a class="app-menu__item" href="{{ route('account.debit.voucher') }}"><span class="app-menu__label">Debit Voucher</span></a></li>--}}
-                            {{--                <li  style="background-color: gray"><a class="app-menu__item" href="{{ route('account.credit.voucher') }}"><span class="app-menu__label">Credit Voucher</span></a></li>--}}
-                            <li  style="background-color: gray"><a class="app-menu__item" href="{!! URL::to('/account/trial-balance') !!}"><span class="app-menu__label">Trial Balance</span></a></li>
-                            {{--                <li  style="background-color: gray"><a class="app-menu__item" href="{!! URL::to('/account/balance-sheet') !!}"><span class="app-menu__label">Balance Sheet</span></a></li>--}}
-                            <li><a class="treeview-item{{Request::is('accounts')||Request::is('accounts/*') ? ' active': ''}}" href="{!! route('accounts.index') !!}">Chart Of Accounts</a></li>
-                            <li  style="background-color: gray"><a class="app-menu__item" href="{{ route('account.coa_print') }}"><span class="app-menu__label">COA Prints</span></a></li>
+{{--                    <li class="nav-item has-treeview{{Request::is('admin/account/coa_print*') || Request::is('admin/account/coa_print*')|| Request::is('admin/transaction*')|| Request::is('admin/account/cashbook*')|| Request::is('admin/account/trial-balance*')|| Request::is('admin/account/credit-voucher*') || Request::is('admin/account/debit-voucher*') || Request::is('admin/account/generalledger*')  ? ' is-expanded': ''}}"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text-o"></i>Accounts </a>       --}}
+                    <li class="nav-item has-treeview" style="border-bottom: 1px solid #4f5962;">
+                        <a class="nav-link {{Request::is('admin/accounts*') ? 'active' : ''}}" href="#" data-toggle="treeview">  <i class="nav-icon fa fa-bank"></i>
+                          <p>
+                              Accounts
+                          </p>
+                        </a>
+                        <ul  class="nav nav-treeview">
+                            <li  class="nav-item" style="background-color: gray">
+                                <a  href="{{ route('admin.transaction.create') }}" class="nav-link {{request()->is('admin/transaction*') ? 'active' : ''}}">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>Posting</p>
+                                </a>
+                            </li>
+                            <li  class="nav-item" style="background-color: gray">
+                                <a   href="{{ route('admin.transaction.index') }}" class="nav-link {{request()->is('admin/transaction*') ? 'active' : ''}}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Posting List</p>
+                                </a>
+                            </li>
+                            <li  class="nav-item" style="background-color: gray">
+                                <a href="{!! URL::to('admin/account/cashbook') !!}" class="nav-link {{request()->is('admin/account/cashbook*') ? 'active' : ''}}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Cash Book</p>
+                                </a>
+                            </li>
+                            <li  class="nav-item" style="background-color: gray">
+                                <a  href="{{ route('admin.account.generalledger') }}" class="nav-link {{request()->is('admin/account/generalledger*') ? 'active' : ''}}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Ledger</p>
+                                </a>
+                            </li>
+                            <li  class="nav-item" style="background-color: gray">
+                                <a  href="{!! URL::to('admin/account/trial-balance') !!}" class="nav-link {{request()->is('admin/account/trial-balance*') ? 'active' : ''}}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Trial Balance</p>
+                                </a>
+                            </li>
+                            <li  class="nav-item" style="background-color: gray">
+                                <a  href="{!! route('accounts.index') !!}"  class="nav-link {{request()->is('accounts/*') ? 'active' : ''}}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Chart Of Accounts</p>
+                                </a>
+                            </li>
 
                         </ul>
                     </li>

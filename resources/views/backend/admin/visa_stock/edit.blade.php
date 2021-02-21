@@ -54,7 +54,7 @@
                             {{--                            </div>--}}
 
                             <div class="row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-5">
                                     <label for="passenger_name">Agent Name</label>
                                     {{--<input type="text" class="form-control" name="agent_id" id="agent_id" value="{{$vDetails->agent_id}}">--}}
                                     <select name="agent_id" id="agent_id" class="form-control select2">
@@ -67,9 +67,13 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-3">
                                     <label for="quantity">Quantity</label>
                                     <input type="text" class="form-control" name="quantity" id="quantity" value="{{$vDetails->quantity}}">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="date">Date</label>
+                                    <input type="date" class=" datepicker form-control " name="date" id="date" value="{{$vDetails->date}}" required>
                                 </div>
                             </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Due;
 use App\Group;
 use App\Order;
 use App\OrderDetail;
@@ -29,7 +30,30 @@ class OrderController extends Controller
         return view('backend.admin.order.visa_stamped', compact('orders'));
     }
 
+    public function payOrderDue(Request $request){
+        //dd($request->all());
+        $order_id = $request->order_id;
+        $order = Order::find($order_id);
 
+        $total_amount=$order->total_amount;
+        $paid_amount=$order->pay_amount;
+
+        $order->pay_amount=$paid_amount+$request->new_paid;
+        $order->due_amount=$total_amount-($paid_amount+$request->new_paid);
+        $order->update();
+
+        $due = new Due();
+        $due->ref_id = $order->id;
+        // $due->invoice_no = $vstock->invoice_no;
+        $due->total_amount =$order->total_amount;
+        $due->paid_amount = $request->new_paid;
+        $due->due_amount = $total_amount-($paid_amount+$request->new_paid);
+        $due->save();
+
+        Toastr::success('Due Pay Successfully', 'Success');
+        return redirect()->back();
+
+    }
     public function showOrderForm()
     {
         $sup_id  = Input::get('supplier_id');
@@ -150,6 +174,7 @@ class OrderController extends Controller
             $passengerDetails = PassengerDetails::find($request->passenger_id[$i]);
             $passengerDetails->status = 1;
             $passengerDetails->save();
+
         }
         Toastr::success('Passport successfully added for visa','Success');
         return redirect()->route('admin.order.invoice',$order->id);
@@ -166,6 +191,14 @@ class OrderController extends Controller
 
     public function orderInvoiceStore(Request $request){
 
+//        $total_amount = 0;
+//
+//        $discount_type = $request->discount_type;
+//        if($discount_type == 'flat'){
+//            $total_amount -= $request->discount_amount;
+//        }else{
+//            $total_amount = ($total_amount*$request->discount_amount)/100;
+//        }
         $order_update = Order::find($request->order_id);
         $order_update->total_amount = $request->total_amount;
         $order_update->discount = $request->discount;
@@ -173,6 +206,14 @@ class OrderController extends Controller
         $order_update->due_amount = $request->due_amount;
         $order_update->payment_method = $request->payment_method;
         $order_update->save();
+        $insert_id = $order_update->id;
+    // due
+        $due = new Due();
+        $due->ref_id = $insert_id;
+        $due->total_amount =$request->total_amount;
+        $due->paid_amount = $request->pay_amount;
+        $due->due_amount = $request->due_amount;
+        $due->save();
 
         Toastr::success('Invoice successfully added for visa','Success');
         return redirect()->route('admin.order.invoice.view',$order_update->id);

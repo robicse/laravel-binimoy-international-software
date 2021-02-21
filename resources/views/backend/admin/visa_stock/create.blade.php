@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="date">Date</label>
-                                    <input type="text" class=" datepicker form-control " name="date" id="date" value="{{date('Y-m-d')}}" required>
+                                    <input type="date" class=" datepicker form-control " name="date" id="date" value="{{date('Y-m-d')}}" required>
                                 </div>
                             </div>
                             <div class="row">

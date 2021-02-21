@@ -7,7 +7,7 @@
 </style>
 
 @section('content')
-    <main class="app-content">
+    <section class="content">
         <div class="app-title">
             <div>
                 <h1><i class=""></i> Add Posting </h1>
@@ -115,7 +115,7 @@
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
 @endsection
 

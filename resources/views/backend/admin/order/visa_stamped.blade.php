@@ -79,7 +79,12 @@
                                     <td>{{!empty($order->discount)? $order->discount : '0'}}</td>
                                     <td>{{$order->pay_amount}}</td>
                                     <td>{{$order->due_amount}}</td>
-                                    <td>{{date('jS M Y',strtotime($order->created_at))}}</td>
+                                    <td>
+                                        {{ $order->due_amount}}
+                                        @if($order->total_amount != $order->pay_amount)
+                                            <a href="" class="btn btn-warning btn-sm mx-1" data-toggle="modal" data-target="#exampleModal-<?= $order->id;?>"> Pay Due</a>
+                                        @endif
+                                    </td>                                    <td>{{date('jS M Y',strtotime($order->created_at))}}</td>
                                     <td>
                                         <a class="btn btn-info waves-effect" href="{{route('admin.order.invoice',$order->id)}}">
                                             <i class="fa fa-edit"></i>
@@ -97,6 +102,60 @@
                                         </form>--}}
                                     </td>
                                 </tr>
+                                <div class="modal fade" id="exampleModal-{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Pay Due</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{route('pay.order.due')}}" method="post">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label for="due">Enter Due Amount</label>
+                                                        <input type="hidden" class="form-control" name="order_id" value="{{$order->id}}">
+                                                        <input type="number" class="form-control" id="due" aria-describedby="emailHelp" name="new_paid" min="" max="{{$order->due_amount}}" placeholder="Enter Amount">
+                                                    </div>
+                                                    {{--                                                    <div class="form-group">--}}
+                                                    {{--                                                        <label for="payment_type">Payment Type</label>--}}
+                                                    {{--                                                        <select name="payment_type" id="payment_type" class="form-control" required>--}}
+                                                    {{--                                                            <option value="Cash" selected>Cash</option>--}}
+                                                    {{--                                                            <option value="Check">Check</option>--}}
+                                                    {{--                                                        </select>--}}
+                                                    {{--                                                        <span>&nbsp;</span>--}}
+                                                    {{--                                                        <input type="text" name="check_number" id="check_number" class="form-control" placeholder="Check Number">--}}
+                                                    {{--                                                        <span>&nbsp;</span>--}}
+                                                    {{--                                                        <input type="text" name="check_date" id="check_date" class="datepicker form-control" placeholder="Issue Deposit Date ">--}}
+                                                    {{--                                                    </div>--}}
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        @push('js')
+                                            {{--                                            <script>--}}
+                                            {{--                                                $(function() {--}}
+                                            {{--                                                    $('#check_number').hide();--}}
+                                            {{--                                                    $('#check_date').hide();--}}
+                                            {{--                                                    $('#payment_type').change(function(){--}}
+                                            {{--                                                        if($('#payment_type').val() == 'Check') {--}}
+                                            {{--                                                            $('#check_number').show();--}}
+                                            {{--                                                            $('#check_date').show();--}}
+                                            {{--                                                        } else {--}}
+                                            {{--                                                            $('#check_number').val('');--}}
+                                            {{--                                                            $('#check_number').hide();--}}
+                                            {{--                                                            $('#check_date').hide();--}}
+                                            {{--                                                        }--}}
+                                            {{--                                                    });--}}
+                                            {{--                                                });--}}
+                                            {{--                                            </script>--}}
+                                        @endpush
+                                    </div>
+                                </div>
                             @endforeach
                             </tbody>
                             <tfoot>
