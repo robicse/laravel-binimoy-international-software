@@ -21,12 +21,12 @@
                     @php
                         $agent_name = App\AgentDetail::find($total_visa_data->agent_id);
 
-            $quantity2 = App\VisaStock::find($total_visa_data->id);
-            //dd($quantity1);
-                //$quantity1->quantity;
-            $check_data2 = App\GroupWiseVisa::where('visa_stock_id',$total_visa_data->id)->sum('quantity');
-            //dd($check_data1);
-           //print_r($check_data1);
+                        $quantity2 = App\VisaStock::find($total_visa_data->id);
+                        //dd($quantity1);
+                        //$quantity1->quantity;
+                        $check_data2 = App\GroupWiseVisa::where('visa_stock_id',$total_visa_data->id)->sum('quantity');
+                        //dd($check_data1);
+                       //print_r($check_data1);
                 if ($check_data2 ==''){
                     $available_quantity2 = $quantity2->quantity;
                     //dd($available_quantity1);
@@ -113,7 +113,7 @@
                                     <td>{{!empty($vDetails->per_piece_price)?$vDetails->per_piece_price:''}}</td>
                                     <td>{{!empty($vDetails->total_price)?$vDetails->total_price:''}}</td>
                                     <td>{{!empty($vDetails->pay_amount)?$vDetails->pay_amount:''}}</td>
-                                    <td>{{!empty($vDetails->due_amount)?$vDetails->due_amount:''}}</td>
+{{--                                    <td>{{!empty($vDetails->due_amount)?$vDetails->due_amount:''}}</td>--}}
                                     <td>
                                         {{ $vDetails->due_amount}}
                                         @if($vDetails->total_price != $vDetails->pay_amount)
@@ -132,7 +132,7 @@
                                            <b>show</b>
                                         </a>
                                         <button type="button" title="Visa Group Wise Divided" class="btn btn-primary" data-toggle="modal" data-target="#visaModal-{{$vDetails->id}}">
-                                            <i class="fa fa-random"></i>
+                                         group wise
                                         </button>
                                         {{--<a class="btn btn-primary waves-effect" href="">
                                             <i class="fa fa-plus"></i>
@@ -215,7 +215,7 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="quantity">Price Per Piece</label>
+                                                        <label for="quantity">Visa sale Price</label>
                                                         <input type="text" class="form-control" name="per_piece_price" id="per_piece_price" placeholder="Enter Price Per Piece" required>
                                                     </div>
 

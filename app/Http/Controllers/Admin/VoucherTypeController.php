@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\VoucherType;
+use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -19,12 +20,12 @@ class VoucherTypeController extends Controller
     public function index()
     {
         $voucherTypes = VoucherType::latest()->get();
-        return view('backend.voucherType.index',compact('voucherTypes'));
+        return view('backend.admin.voucherType.index',compact('voucherTypes'));
     }
 
     public function create()
     {
-        return view('backend.voucherType.create');
+        return view('backend.admin.voucherType.create');
     }
 
 
@@ -43,7 +44,7 @@ class VoucherTypeController extends Controller
         $voucherTypes->slug = Str::slug($request->name);
         $voucherTypes->save();
         Toastr::success('Voucher Type Created Successfully', 'Success');
-        return redirect()->route('voucherType.index');
+        return redirect()->route('admin.voucherType.index');
     }
 
     public function show($id)
@@ -54,7 +55,7 @@ class VoucherTypeController extends Controller
     public function edit($id)
     {
         $voucherTypes =  VoucherType::find($id);
-        return view('backend.voucherType.edit',compact('voucherTypes'));
+        return view('backend.admin.voucherType.edit',compact('voucherTypes'));
     }
 
 
@@ -67,13 +68,13 @@ class VoucherTypeController extends Controller
         $check_voucher_name = VoucherType::where('name',$request->name)->latest()->pluck('name')->first();
         if($check_voucher_name){
             Toastr::warning('Voucher Name Already Exists!', 'Warning');
-            return redirect()->route('voucherType.update');
+            return redirect()->route('admin.voucherType.update');
         }
         $voucherTypes->name = $request->name;
         $voucherTypes->slug = Str::slug($request->name);
         $voucherTypes->save();
         Toastr::success('Voucher Type Edited Successfully', 'Success');
-        return redirect()->route('voucherType.index');
+        return redirect()->route('admin.voucherType.index');
     }
 
 
@@ -81,6 +82,6 @@ class VoucherTypeController extends Controller
     {
         $voucherTypes =  VoucherType::find($id);
         $voucherTypes->delete();
-        return redirect()->route('voucherType.index');
+        return redirect()->route('admin.voucherType.index');
     }
 }

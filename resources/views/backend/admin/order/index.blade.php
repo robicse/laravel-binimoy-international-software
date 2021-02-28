@@ -64,7 +64,7 @@
                                 <th>Photo</th>
                                 <th>PC</th>
                                 <th>MC</th>
-                                <th>Visa Issue Date</th>
+{{--                                <th>Visa Issue Date</th>--}}
                             </tr>
                             </thead>
                             <tbody>
@@ -116,7 +116,7 @@
                                             </div>
                                         </td>
                                     </form>
-                                    <td>{{date('jS M Y',strtotime($order->visa_issue_date))}}</td>
+{{--                                    <td>{{date('jS M Y',strtotime($order->visa_issue_date))}}</td>--}}
                                     {{--<td>
                                         <a class="btn btn-info waves-effect" href="{{route('admin.order.invoice',$order->id)}}">
                                             <i class="fa fa-edit"></i>
@@ -145,7 +145,7 @@
                                 <th>Photo</th>
                                 <th>PC</th>
                                 <th>MC</th>
-                                <th>Visa Issue Date</th>
+{{--                                <th>Visa Issue Date</th>--}}
                             </tr>
                             </tfoot>
                         </table>

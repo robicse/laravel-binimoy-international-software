@@ -66,12 +66,12 @@
                             <textarea name="address" id="address" class="form-control" rows="3"></textarea>
                         </div>
 
-{{--                        <div class="row">--}}
-{{--                            <div class="form-group col-md-6">--}}
-{{--                                <label for="name">Previous Payable</label>--}}
-{{--                                <input type="number" class="form-control" name="previous_pay" id="previous_pay" placeholder="Enter Previous Payable if Any...">--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="name">Previous Payable</label>
+                                <input type="number" class="form-control" name="previous_pay" id="previous_pay" placeholder="Enter Previous Payable if Any...">
+                            </div>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">

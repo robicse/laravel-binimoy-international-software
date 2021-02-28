@@ -72,14 +72,14 @@
                             </p>
                         </a>
                     </li>
-{{--                    <li class="nav-item" style="padding-top: 7px;">--}}
-{{--                        <a href="{{route('admin.order.index')}}" class="nav-link {{request()->is('admin/order*') ? 'active' : '' }}">--}}
-{{--                            <i class="nav-icon fa fa-shopping-cart"></i>--}}
-{{--                            <p>--}}
-{{--                                Passport Stamping--}}
-{{--                            </p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    <li class="nav-item" style="padding-top: 7px;">
+                        <a href="{{route('admin.order.index')}}" class="nav-link {{request()->is('admin/order*') ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-shopping-cart"></i>
+                            <p>
+                                Passport Stamping
+                            </p>
+                        </a>
+                    </li>
 
                     <li class="nav-item" style="padding-top: 7px;">
                         <a href="{{route('admin.order.visa.stamped')}}" class="nav-link {{request()->is('admin/visa-stamped*') ? 'active' : '' }}" >
@@ -190,6 +190,16 @@
 {{--                        </ul>--}}
 {{--                    </li>--}}
 {{--                    <li class="nav-item has-treeview{{Request::is('admin/account/coa_print*') || Request::is('admin/account/coa_print*')|| Request::is('admin/transaction*')|| Request::is('admin/account/cashbook*')|| Request::is('admin/account/trial-balance*')|| Request::is('admin/account/credit-voucher*') || Request::is('admin/account/debit-voucher*') || Request::is('admin/account/generalledger*')  ? ' is-expanded': ''}}"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text-o"></i>Accounts </a>       --}}
+
+                    <li class="nav-item">
+                        <a href="{{route('admin.voucherType.index')}}" class="nav-link {{request()->is('admin/voucherType*') ? 'active' : ''}}">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                Voucher Type
+                            </p>
+                        </a>
+                    </li>
+
                     <li class="nav-item has-treeview" style="border-bottom: 1px solid #4f5962;">
                         <a class="nav-link {{Request::is('admin/accounts*') ? 'active' : ''}}" href="#" data-toggle="treeview">  <i class="nav-icon fa fa-bank"></i>
                           <p>

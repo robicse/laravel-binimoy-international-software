@@ -1,4 +1,5 @@
 @extends('backend.layouts.master')
+@section("title","posting create")
 <style>
     .requiredCustom{
         font-size: 20px;
@@ -7,29 +8,39 @@
 </style>
 
 @section('content')
-    <section class="content">
-        <div class="app-title">
-            <div>
-                <h1><i class=""></i> Add Posting </h1>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Passport Stock</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item active"> <a href="{{ route('admin.transaction.index') }}" >All Posting </a></li>
+                    </ol>
+                </div>
             </div>
-            <ul class="app-breadcrumb breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="{{ route('admin.transaction.index') }}" class="btn btn-sm btn-primary col-sm" type="button">All Posting </a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-12">
-            <div class="tile">
-                <h3 class="tile-title">Add Posting </h3>
-                <div class="tile-body tile-footer">
-                    @if(session('response'))
-                        <div class="alert alert-success">
-                            {{ session('response') }}
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-info card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title float-left">Add Posting</h3>
+                        <div class="float-right">
+                            <a href="{{route('admin.transaction.index')}}">
+                                <button class="btn btn-success">
+                                    <i class="fa fa-backward"> </i>
+                                    Back
+                                </button>
+                            </a>
                         </div>
-                    @endif
+                    </div>
                     <form method="post" action="{{ route('admin.transaction.store') }}">
                         @csrf
-                        <table class="table table-striped">
+                        <table class="table table-bordered ">
                             <tr>
                                 <th>
                                     <div class="col-md-12 form-group row">
@@ -54,8 +65,7 @@
                                 </th>
                             </tr>
                         </table>
-
-                        <div class="table-responsive">
+                        <div class="table-responsive table-bordered">
                             <input type="button" class="btn btn-primary add " style="margin-left: 804px;" value="Add More Product">
                             <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -65,7 +75,7 @@
                                 <th>Debit/Credit <small class="requiredCustom">*</small></th>
                                 <th>Amount <small class="requiredCustom">*</small></th>
                                 <th>Description <small class="requiredCustom">*</small></th>
-                                <th>Action</th>
+{{--                                <th>Action</th>--}}
 
                             </tr>
                             </thead>
@@ -111,8 +121,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="tile-footer">
-                </div>
+
             </div>
         </div>
     </section>

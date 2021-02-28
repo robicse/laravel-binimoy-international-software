@@ -85,7 +85,7 @@
                                         <td>
                                             <div class="form-group" style="width: 120px!important;">
                                                 <label for="img">Photo</label>
-                                                <input type="file" class="form-control-file img" name="img[]" id="img">
+                                                <input type="file" class="form-control-file img" name="img[]" id="img" required>
                                                 <span style="color:red">Passenger Photo</span>
                                             </div>
                                         </td>

@@ -63,7 +63,7 @@
                                 <th>Discount</th>
                                 <th>Pay Amount</th>
                                 <th>Due Amount</th>
-                                <th>Date</th>
+{{--                                <th>Date</th>--}}
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -78,19 +78,20 @@
                                     <td>{{$order->total_amount}}</td>
                                     <td>{{!empty($order->discount)? $order->discount : '0'}}</td>
                                     <td>{{$order->pay_amount}}</td>
-                                    <td>{{$order->due_amount}}</td>
+{{--                                    <td>{{$order->due_amount}}</td>--}}
                                     <td>
-                                        {{ $order->due_amount}}
+{{--                                        {{ $order->due_amount}}--}}
                                         @if($order->total_amount != $order->pay_amount)
                                             <a href="" class="btn btn-warning btn-sm mx-1" data-toggle="modal" data-target="#exampleModal-<?= $order->id;?>"> Pay Due</a>
                                         @endif
-                                    </td>                                    <td>{{date('jS M Y',strtotime($order->created_at))}}</td>
+                                    </td>
+{{--                                    <td>{{date('jS M Y',strtotime($order->created_at))}}</td>--}}
                                     <td>
                                         <a class="btn btn-info waves-effect" href="{{route('admin.order.invoice',$order->id)}}">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         <a class="btn btn-primary waves-effect" href="{{route('admin.order.invoice.view',$order->id)}}">
-                                            <i class="fa fa-file"></i>
+                                            <i class="fa fa-credit-card"></i>
                                         </a>
                                         {{--<button class="btn btn-danger waves-effect" type="button"
                                                 onclick="deleteCat({{$group->id}})">
@@ -166,7 +167,7 @@
                                 <th>Discount</th>
                                 <th>Pay Amount</th>
                                 <th>Due Amount</th>
-                                <th>Date</th>
+{{--                                <th>Date</th>--}}
                                 <th>Action</th>
                             </tr>
                             </tfoot>

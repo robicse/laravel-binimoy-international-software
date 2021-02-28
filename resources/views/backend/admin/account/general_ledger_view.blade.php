@@ -1,23 +1,20 @@
 @extends('backend.layouts.master')
-
+@section("title","general ledger")
 @section('content')
-    <main class="app-content">
-        <div class="col-md-12">
 
-            @if(session('response'))
-                <div class="alert alert-success">
-                    {{ session('response') }}
-                </div>
-            @endif
-
-
-            <div class="tile">
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <!-- general form elements -->
+                <div class="card card-info card-outline">
+                    <div class="card-header">
                 {{--<h3 class="tile-title">Accounts</h3>--}}
                 <div class="col-sm-4" style="width: 33.33333333%;height:180px; float: left;">
-                    <h2>StarIT LTD</h2>
-                    <p style="margin: 0px">BBTOA Building,4th Floor,Road no:9 ,South Kallyanpur, Mirpur,Dhaka-1207</p>
-                    <p style="margin: 0px"><b>Phone</b>:+88028091125 <span>, <b>Email</b>:info@123@starit.com </span></p>
-                    <p><b>Web</b> :www.123starir.com</p>
+                    <h2> Binimoy Int.</h2>
+                    <p style="margin: 0px"><b>Address:</b>82, ShantiNagar (40/3 New Paltan)</p>
+                    <p style="margin: 0px">Dhaka-1217, Bangladesh</p>
+                    <p style="margin: 0px"><b>Phone</b>:(880) 1787-681170</p>
+                    <p><b>Email</b>: info@binimoy.com</p>
                 </div>
 
                 <div class="col-sm-4" style="text-align: center; width: 33.33333333%; float: left;">
@@ -190,8 +187,10 @@
                 <div class="text-center">
                     <a href="{{ url('account/general-ledger-print/'.$general_ledger.'/'.$date_from.'/'.$date_to) }}" target="_blank" class="btn btn-sm btn-primary float-left">Print</a>
                 </div>
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
 
 @endsection
 

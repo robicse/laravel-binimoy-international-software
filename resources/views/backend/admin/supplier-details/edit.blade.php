@@ -66,6 +66,10 @@
                             <label for="address">Supplier Address</label>
                             <textarea name="address" id="address" class="form-control" rows="3">{{$supplier->address}}</textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="address">Supplier Address</label>
+                            <input type="text" class="form-control" name="previous_pay" id="previous_pay" value="{{$supplier->previous_pay}}">
+                        </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">

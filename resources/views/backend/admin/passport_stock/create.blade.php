@@ -86,7 +86,7 @@
                                     <td>
                                         <div class="form-group">
                                             <label for="pp_img">Passport Image</label>
-                                            <input type="file" class="form-control" name="pp_img[]" id="pp_img" required>
+                                            <input type="file" class="form-control" name="pp_img[]" id="pp_img" >
                                         </div>
                                     </td>
                                     <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>

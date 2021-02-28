@@ -1,27 +1,29 @@
 @extends('backend.layouts.master')
 
 @section('content')
-    <?php use App\Http\Controllers\AccountController;
+    <?php use App\Http\Controllers\Admin\AccountController;
     //echo AccountController::abc(); ?>
- <main class="app-content">
-    <div class="app-title">
-        <div>
-            <h1><i class="fa fa-file-text-o"></i> Tree</h1>
-        </div>
-        {{--<ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="#">Invoice</a></li>
-        </ul>--}}
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="tile">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1><i class=""></i>Tree</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
 
-
-
-
-
-
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <!-- general form elements -->
+                <div class="card card-info card-outline">
+                    <div class="card-header">
                 <style type="text/css">
                     .fa-folder{
                         color:#D4AC0D;
@@ -33,12 +35,10 @@
                 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="panel panel-bd lobidrag">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-
-                                </div>
+                    <div class="col-12">
+                        <!-- general form elements -->
+                        <div class="card card-info card-outline">
+                            <div class="card-header">
                             </div>
 
                             <div class="panel-body">
@@ -76,8 +76,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        </div>
+                        </div>
+
+
                 <script>
                     $(document).ready(function () {
                         "use strict"; // Start of use strict
@@ -203,9 +205,9 @@
 
             </div>
         </div>
-    </div>
-</main>
-
+            </div>
+        </div>
+    </section>
 @endsection
 
 

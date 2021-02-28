@@ -29,7 +29,7 @@ class AccountController extends Controller
 
         $accounts = Account::where('IsActive',1)->get();
         //dd($accounts);
-        return view('backend.account.tree',compact('accounts'));
+        return view('backend.admin.account.tree',compact('accounts'));
     }
 
     public static function dfs($HeadName,$HeadCode,$oResult,$visit,$d)

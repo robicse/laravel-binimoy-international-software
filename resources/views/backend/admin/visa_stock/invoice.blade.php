@@ -179,6 +179,7 @@
 
                 </div>
             </div>
+        </div>
     </section>
 @stop
 @push('js')

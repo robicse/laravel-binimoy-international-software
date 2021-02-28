@@ -20,23 +20,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6efa95f7-a8ce-4b85-b1bf-292f11f26477" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/admin/visa_stock/invoice.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AccountController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AgentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AgentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/OrderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PassportStock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PassportStock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ReadyForFlyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ReadyForFlyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SupplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SupplierController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/TransactionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/VisaStockController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/VisaStockController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/VisaStock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/VisaStock.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/VoucherTypeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/VoucherTypeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/OrderDetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/OrderDetail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/png" beforeDir="false" afterPath="$PROJECT_DIR$/public/png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/account/cashbook.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/account/cashbook.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/account/general_ledger_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/account/general_ledger_form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/account/general_ledger_view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/account/general_ledger_view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/account/tree.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/account/tree.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/account/trial_balance_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/account/trial_balance_form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/accounts/order_invoice_view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/accounts/order_invoice_view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/account/trial_balance_view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/account/trial_balance_view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/order/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/order/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/order/order_create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/order/order_create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/order/order_invoice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/order/order_invoice.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/order/order_invoice_view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/order/order_invoice_view.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/order/visa_stamped.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/order/visa_stamped.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/passport_stock/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/passport_stock/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/posting/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/posting/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/posting/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/posting/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/ready-for-fly/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/ready-for-fly/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/supplier-details/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/supplier-details/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/visa_stock/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/visa_stock/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/visa_stock/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/visa_stock/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/supplier-details/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/supplier-details/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/visa_stock/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/visa_stock/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/visa_stock/invoice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/visa_stock/invoice.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/includes/admin_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/includes/admin_sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -158,7 +176,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../clean-tech-engineering" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../axis-development-ltd" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -185,6 +203,13 @@
       <workItem from="1613533867115" duration="19633000" />
       <workItem from="1613621952858" duration="12648000" />
       <workItem from="1613912370624" duration="1956000" />
+      <workItem from="1613924191847" duration="658000" />
+      <workItem from="1613966019149" duration="7018000" />
+      <workItem from="1614052973196" duration="3242000" />
+      <workItem from="1614140022394" duration="1343000" />
+      <workItem from="1614227604653" duration="8230000" />
+      <workItem from="1614398608312" duration="2285000" />
+      <workItem from="1614486408359" duration="22012000" />
     </task>
     <servers />
   </component>
@@ -204,22 +229,34 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="361" y="71" key="#Deployment" timestamp="1614245121584">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#Deployment/0.0.1536.824@0.0.1536.824" timestamp="1614245121584" />
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1613640444736">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1613640444736" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1613921094274">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1614491037697">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1613921094274" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1614491037697" />
     <state x="546" y="135" key="NewPhpClassDialog" timestamp="1612867534218">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="546" y="135" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1612867534218" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1612867756053">
+    <state x="598" y="143" width="414" height="538" key="ftp.server.browser" timestamp="1614245117166">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1612867756053" />
+    <state x="598" y="143" width="414" height="538" key="ftp.server.browser/0.0.1536.824@0.0.1536.824" timestamp="1614245117166" />
+    <state x="640" y="304" key="publish.login" timestamp="1614245059925">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="640" y="304" key="publish.login/0.0.1536.824@0.0.1536.824" timestamp="1614245059924" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1614514675805">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1614514675805" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1613558854052">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -230,7 +267,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/backend/admin/posting/create.blade.php</url>
-          <line>20</line>
+          <line>26</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

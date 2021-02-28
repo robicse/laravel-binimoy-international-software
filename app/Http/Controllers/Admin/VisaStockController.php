@@ -218,6 +218,7 @@ class VisaStockController extends Controller
         $due = new Due();
         $due->ref_id = $vstock->id;
        // $due->invoice_no = $vstock->invoice_no;
+        $due->invoice_no=$vstock->invoice_id;
         $due->total_amount =$vstock->total_price;
         $due->paid_amount = $request->new_paid;
         $due->due_amount = $total_amount-($paid_amount+$request->new_paid);

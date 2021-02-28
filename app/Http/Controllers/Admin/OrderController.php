@@ -21,6 +21,7 @@ use Intervention\Image\Facades\Image;
 class OrderController extends Controller
 {
     public function index(){
+        //dd('hh');
         $pending_orders = PendingOrder::latest()->get();
         return view('backend.admin.order.index', compact('pending_orders'));
     }
@@ -98,32 +99,33 @@ class OrderController extends Controller
                 $pending_order->passenger_details_id = $request->passenger_id[$i];
                 $pending_order->group_id = $request->group_id[$i];
 
-                    if (!empty($request->img[$i])){
-                        $photo_date = date('Y-m-d');
-                    }else{
-                        $photo_date = '';
-                    }
+                if (!empty($request->img[$i])){
+                    $photo_date = date('Y-m-d');
+                }else{
+                    $photo_date = '';
+                }
 
                 $pending_order->photo_date = $photo_date;
                 $pending_order->pc = $request->pc[$i];
 
-                    if (!empty($request->pc[$i])){
+                if (!empty($request->pc[$i])){
                     $pc_date = date('Y-m-d');
-                    }else{
+                }else{
                     $pc_date = '';
-                    }
+                }
 
                 $pending_order->pc_date = $pc_date;
                 $pending_order->mp = $request->mc[$i];
-                    if (!empty($request->mc[$i])){
-                        $mc_date = date('Y-m-d');
-                    }else{
-                        $mc_date = '';
-                    }
+                if (!empty($request->mc[$i])){
+                    $mc_date = date('Y-m-d');
+                }else{
+                    $mc_date = '';
+                }
+
                 $pending_order->mp_date = $mc_date;
 
-                $pending_order->visa_issue_date = $request->visa_issue_date[$i];
-
+               // $pending_order->visa_issue_date = $request->visa_issue_date[$i];
+               // dd($pending_order);
                 if (!empty($request->img[$i])){
                     $image = $request->img[$i];
                     if (isset($image)) {
@@ -138,6 +140,7 @@ class OrderController extends Controller
                     }
                     $pending_order->photo = $imagename;
                 }
+               // dd($pending_order);
                 $pending_order->save();
 
             }elseif(!empty($request->img[$i]) || !empty($request->pc[$i]) || !empty($request->mc[$i])){
@@ -149,11 +152,11 @@ class OrderController extends Controller
                 $orderDetails->supplier_id = $request->supplier_id;
                 $orderDetails->passenger_details_id = $request->passenger_id[$i];
                 $orderDetails->group_id = $request->group_id[$i];
-//                $orderDetails->photo_date = $request->photo_date[$i];
+                $orderDetails->photo_date = $request->photo_date[$i];
                 $orderDetails->pc = $request->pc[$i];
-//                $orderDetails->pc_date = $request->pc_date[$i];
+                $orderDetails->pc_date = $request->pc_date[$i];
                 $orderDetails->mp = $request->mc[$i];
-    //                $orderDetails->mp_date = $request->mc_date[$i];
+                $orderDetails->mp_date = $request->mc_date[$i];
 
                 if (!empty($request->img[$i])){
                     $image = $request->img[$i];
@@ -174,17 +177,130 @@ class OrderController extends Controller
             $passengerDetails = PassengerDetails::find($request->passenger_id[$i]);
             $passengerDetails->status = 1;
             $passengerDetails->save();
-
         }
         Toastr::success('Passport successfully added for visa','Success');
         return redirect()->route('admin.order.invoice',$order->id);
     }
 
+
+//    public function store(Request $request)
+//    {
+//     //  dd($request->all());
+//        $this->validate($request,[
+//            'supplier_id' => 'required',
+////            'photo' => 'required',
+////            'photo.*' => 'photo|mimes:jpeg,jpg,png'
+//        ]);
+//
+//        //dd($request->all());
+//
+//        $invoice = mt_rand(111111,999999);
+//        $row_count = count($request->passenger_id);
+//        $order = new Order();
+//        $order->invoice_id = $invoice;
+//        $order->supplier_id = $request->supplier_id;
+//        $order->save();
+//        for ($i = 0; $i < $row_count; $i++) {
+//
+//            if (empty($request->img[$i]) || empty($request->pc[$i]) || empty($request->mc[$i])){
+//                //dd($request->img[$i]);
+//
+//                //print_r($request->img[$i]);
+//                $pending_order = new PendingOrder();
+//                $pending_order->order_id = $order->id;
+//                $pending_order->passenger_details_id = $request->passenger_id[$i];
+//                $pending_order->group_id = $request->group_id[$i];
+//
+//                    if (!empty($request->img[$i])){
+//                        $photo_date = date('Y-m-d');
+//                    }else{
+//                        $photo_date = '';
+//                    }
+//
+//                $pending_order->photo_date = $photo_date;
+//                $pending_order->pc = $request->pc[$i];
+//
+//                    if (!empty($request->pc[$i])){
+//                    $pc_date = date('Y-m-d');
+//                    }else{
+//                    $pc_date = '';
+//                    }
+//
+//                $pending_order->pc_date = $pc_date;
+//                $pending_order->mp = $request->mc[$i];
+//                    if (isset($request->mc[$i])){
+//                        $mc_date = date('Y-m-d');
+//                    }else{
+//                        $mc_date = '';
+//                    }
+//                $pending_order->mp_date = $mc_date;
+//
+//                $pending_order->visa_issue_date = $request->visa_issue_date[$i];
+//
+//                if (!empty($request->img[$i])){
+//                    $image = $request->img[$i];
+//                    if (isset($image)) {
+//                        //make unique name for image
+//                        $currentDate = Carbon::now()->toDateString();
+//                        $imagename = $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+//                        //resize image for category and upload
+//                        $pImage = Image::make($image)->resize(300, 300)->save($image->getClientOriginalExtension());
+//                        Storage::disk('public')->put('uploads/visa/' . $imagename, $pImage);
+//                    } else {
+//                        $imagename = 'default.png';
+//                    }
+//                    $pending_order->photo = $imagename;
+//                }
+//                $pending_order->save();
+//
+//            }elseif(!empty($request->img[$i]) || !empty($request->pc[$i]) || !empty($request->mc[$i])){
+//                //dd($request->img[$i]);
+//
+//                $orderDetails = new OrderDetail();
+//
+//                $orderDetails->order_id = $order->id;
+//                $orderDetails->supplier_id = $request->supplier_id;
+//                $orderDetails->passenger_details_id = $request->passenger_id[$i];
+//                $orderDetails->group_id = $request->group_id[$i];
+////                $orderDetails->photo_date = $request->photo_date[$i];
+//                $orderDetails->pc = $request->pc[$i];
+////                $orderDetails->pc_date = $request->pc_date[$i];
+//                $orderDetails->mp = $request->mc[$i];
+//    //                $orderDetails->mp_date = $request->mc_date[$i];
+//
+//                if (!empty($request->img[$i])){
+//                    $image = $request->img[$i];
+//
+//                    if (isset($image)) {//make unique name for image
+//                        $currentDate = Carbon::now()->toDateString();
+//                        $imagename = $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+////            resize image for category and upload
+//                        $pImage = Image::make($image)->resize(300, 300)->save($image->getClientOriginalExtension());
+//                        Storage::disk('public')->put('uploads/visa/' . $imagename, $pImage);
+//                    } else {
+//                        $imagename = 'default.png';
+//                    }
+//                    $orderDetails->photo = $imagename;
+//                }
+//                $orderDetails->save();
+//            }
+//            $passengerDetails = PassengerDetails::find($request->passenger_id[$i]);
+//            $passengerDetails->status = 1;
+//            $passengerDetails->save();
+//
+//        }
+//        Toastr::success('Passport successfully added for visa','Success');
+//        return redirect()->route('admin.order.invoice',$order->id);
+//    }
+
     public function showOrderInvoice($id){
-//dd('dd');
+//dd($id);
         $order = Order::find($id);
+       // dd($order);
         $supplier = $order->supplier_id;
+       // dd($supplier);
         $order_details = OrderDetail::where('order_id',$order->id)->get();
+       // dd($order_details);
 
         return view('backend.admin.order.order_invoice', compact('order','supplier','order_details'));
     }

@@ -32,8 +32,12 @@ class PassportStock extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $this->validate($request,[
             'supplier_id' => 'required',
+            //'pp_img' => 'required',
+            //'pp_img.*' => 'image|mimes:jpg,jpeg'
+           // 'pp_img' =>'required|mimes:jpeg,jpg,png',
         ]);
 
         $row_count = count($request->passenger_name);

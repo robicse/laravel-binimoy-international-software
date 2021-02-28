@@ -27,10 +27,11 @@ class TransactionController extends Controller
     {
         //$transactions = Transaction::latest()->get();
         $transactions = DB::table('transactions')
-            ->select('voucher_type_id','voucher_no','created_at')
+            ->select('voucher_type_id','voucher_no','transaction_description','created_at')
             ->groupBy('created_at')
             ->groupBy('voucher_type_id')
             ->groupBy('voucher_no')
+            ->groupBy('transaction_description')
 
             ->latest()
             ->get();
@@ -224,7 +225,7 @@ class TransactionController extends Controller
 
         $transaction_count = count($transaction_infos);
 //dd($transaction_infos);
-        return view('backend.posting.invoice', compact('transaction_infos', 'transaction_count'));
+        return view('backend.admin.posting.invoice', compact('transaction_infos', 'transaction_count'));
     }
     public function general_ledger_form()
     {
@@ -301,7 +302,7 @@ class TransactionController extends Controller
 
         //dd($general_ledger_infos);
 
-        return view('backend.account.general_ledger_view', compact('general_ledger_infos','PreBalance', 'preDebCre', 'general_ledger', 'date_from', 'date_to'));
+        return view('backend.admin.account.general_ledger_view', compact('general_ledger_infos','PreBalance', 'preDebCre', 'general_ledger', 'date_from', 'date_to'));
     }
 
 
@@ -365,7 +366,7 @@ class TransactionController extends Controller
 
         //dd($general_ledger_infos);
 
-        return view('backend.account.general_ledger_print', compact('general_ledger_infos','PreBalance', 'preDebCre', 'transaction_head', 'date_from', 'date_to'));
+        return view('backend.admin.account.general_ledger_print', compact('general_ledger_infos','PreBalance', 'preDebCre', 'transaction_head', 'date_from', 'date_to'));
     }
 
     public function trial_balance_form()
@@ -551,7 +552,7 @@ class TransactionController extends Controller
         //dd($oResultAssets);
 
 
-        return view('backend.account.trial_balance_view', compact('date_from','date_to','oResultAssets','oResultIncomes','oResultExpenses','oResultLiabilities','PreBalance','preDebCre'));
+        return view('backend.admin.account.trial_balance_view', compact('date_from','date_to','oResultAssets','oResultIncomes','oResultExpenses','oResultLiabilities','PreBalance','preDebCre'));
     }
 
     public function trial_balance_print($date_from,$date_to)
@@ -715,12 +716,12 @@ class TransactionController extends Controller
         }
 
 
-        return view('backend.account.trial_balance_print', compact('date_from','date_to','oResultAssets','oResultIncomes','oResultExpenses','oResultLiabilities','PreBalance','preDebCre'));
+        return view('backend.admin.account.trial_balance_print', compact('date_from','date_to','oResultAssets','oResultIncomes','oResultExpenses','oResultLiabilities','PreBalance','preDebCre'));
     }
 
     public function balance_sheet()
     {
-        return view('backend.account.balance_sheet_view');
+        return view('backend.admin.account.balance_sheet_view');
     }
 
     public function getVoucherNo(Request $request){

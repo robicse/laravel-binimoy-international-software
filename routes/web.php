@@ -15,6 +15,25 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 Route::get('artisan/{command}/{param}', 'ArtisanCommandController@show');
+/* artisan command */
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return 'cache clear';
+});
+Route::get('/config-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    return 'config:cache';
+});
+Route::get('/view-cache', function() {
+    $exitCode = Artisan::call('view:cache');
+    return 'view:cache';
+});
+Route::get('/view-clear', function() {
+    $exitCode = Artisan::call('view:clear');
+    return 'view:clear';
+});
+
+
 
 Auth::routes();
 
@@ -32,8 +51,9 @@ Route::group(['middleware'=>['auth','admin']], function (){
         Route::resource('users', 'UsersController');
         Route::resource('expense-category', 'ExpenseCategoryController');
         Route::resource('expense-manage', 'ExpenseManageController');
-        Route::resource('admin/voucherType','VoucherTypeController');
+        Route::resource('voucherType','VoucherTypeController');
         Route::resource('admin/transaction','TransactionController');
+
     });
     Route::post('pay-due','Admin\VisaStockController@payDue')->name('pay.due');
     Route::post('pay-order-due','Admin\OrderController@payOrderDue')->name('pay.order.due');
@@ -58,7 +78,10 @@ Route::group(['middleware'=>['auth','admin']], function (){
     Route::post('admin/manpower/visa-issue','Admin\ManpowerController@visaIssue')->name('admin.manpower.visa.issue');
     Route::post('admin/manpower/status-issue','Admin\ManpowerController@statusIssue')->name('admin.manpower.status.issue');
 
+
+    Route::post('admin/ready-for-fly/date-issue','Admin\ReadyForFlyController@flightDateIssue')->name('admin.manpower.date.issue');
     Route::get('admin/ready-for-fly/index','Admin\ReadyForFlyController@index')->name('admin.ready.for.fly.index');
+    Route::post('admin/ready-for-fly/date-update','Admin\ReadyForFlyController@DateUpdate')->name('admin.readyforfly.dateUpdate');
 
     Route::get('admin/stamping-passport/{id}','Admin\SupplierController@stampingPassport')->name('admin.stamping-passport');
     Route::get('admin/all-stamping-passport','Admin\SupplierController@AllStampingPassport')->name('admin.all-stamping-passport');
@@ -75,7 +98,7 @@ Route::group(['middleware'=>['auth','admin']], function (){
     Route::post('admin/account/cashbook','Admin\AccountController@cash_book_form')->name('account.cashbook');
     Route::get('admin/account/cashbook-print/{date_from}/{date_to}','Admin\AccountController@cash_book_print');
 
-   // Route::resource('admin/voucherType','VoucherTypeController');
+
    // Route::resource('admin/transaction','TransactionController');
     //Route::get('account/voucher-invoice/{voucher_no}/{transaction_date}','TransactionController@voucher_invoice');
     Route::get('admin/account/voucher-invoice/{voucher_type_id}/{voucher_no}','Admin\TransactionController@voucher_invoice');

@@ -60,10 +60,11 @@
                             <thead>
                             <tr>
                                 <th>#Id</th>
-                                <th>Invoice</th>
+                                <th>Passenger Name</th>
+                                <th>Passport No</th>
                                 <th>Supplier Name</th>
-                                <th>Paid Amount</th>
-                                <th>Due Amount</th>
+                                <th>Group</th>
+                                <th>Fly Date</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -77,18 +78,86 @@
                                     <td>{{$key +1 }}</td>
                                     <td>{{$pDetails->passenger_name}}</td>
                                     <td>{{$pDetails->pp_no}}</td>
-                                    <td>{{$group->name}}-{{$group->gr}}</td>
                                     <td>{{$supplierDetails->name}}</td>
+                                    <td>{{$group->name}}-{{$group->gr}}</td>
+                                    <td>  @if ($orderDetail->flight_date == '')
+                                            <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm_{{$orderDetail->id}}">Click To Add </a>
+                                        @endif
+                                        {{$orderDetail->flight_date}}
+                                        @if(!empty($orderDetail->flight_date))
+                                            <a class="btn btn-info waves-effect" data-toggle="modal" data-target="#date_{{$orderDetail->id}}" href="{{route('admin.readyforfly.dateUpdate',$orderDetail->id)}}">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        @endif
+                                    </td>
                                 </tr>
+                                <div class="modal fade" id="modalRegisterForm_{{$orderDetail->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+
+                                            <form action="{{route('admin.manpower.date.issue')}}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="modal-header text-center">
+                                                    <h4 class="modal-title w-100 font-weight-bold">Add Fly Date</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body mx-3">
+                                                    <div class="md-form mb-5">
+                                                        <input type="hidden" id="order_details_id" name="order_details_id" class="form-control validate" value="{{$orderDetail->id}}">
+                                                        <label data-error="wrong" data-success="right" for="manpower_date">Manpower Date</label>
+                                                        <input type="date" name="flight_date" id="flight_date" class="form-control validate" value="{{date('Y-m-d')}}">
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer d-flex justify-content-center">
+                                                    <button type="submit" class="btn btn-success">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="date_{{$orderDetail->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+
+                                            <form action="{{route('admin.readyforfly.dateUpdate')}}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="modal-header text-center">
+                                                    <h4 class="modal-title w-100 font-weight-bold">Update Fly Date</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body mx-3">
+                                                    <div class="md-form mb-5">
+                                                        <input type="hidden" id="order_details_id" name="order_details_id" class="form-control validate" value="{{$orderDetail->id}}">
+                                                        <label data-error="wrong" data-success="right" for="manpower_date">Manpower Date</label>
+                                                        <input type="date" name="flight_date" id="flight_date" class="form-control validate" value="{{$orderDetail->flight_date}}">
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer d-flex justify-content-center">
+                                                    <button type="submit" class="btn btn-success">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>#Id</th>
-                                <th>Invoice</th>
+                                <th>Passenger Name</th>
+                                <th>Passport No</th>
                                 <th>Supplier Name</th>
-                                <th>Paid Amount</th>
-                                <th>Due Amount</th>
+                                <th>Group</th>
+                                <th>Fly Date</th>
                             </tr>
                             </tfoot>
                         </table>

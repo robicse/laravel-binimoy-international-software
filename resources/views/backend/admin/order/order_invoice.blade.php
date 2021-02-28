@@ -225,6 +225,7 @@
 
             </div>
         </div>
+        </div>
     </section>
 
 @stop
@@ -258,6 +259,7 @@
         $('.select2').select2();
     </script>
     <script>
+
         $(document).ready(function(){
             var i=1;
             $('#add').click(function(){

@@ -1,21 +1,35 @@
 @extends('backend.layouts.master')
-
+@section("title","cashbook")
 @section('content')
-    <main class="app-content">
-        <div class="app-title">
-            <div>
-                <h1><i class=""></i> Cash Book</h1>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>All Cash Book </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item active">  Cash Book List</li>
+                    </ol>
+                </div>
             </div>
-        </div>
-        <div class="col-md-12">
-            <div class="tile">
-                <h3 class="tile-title">Cash Book</h3>
-                <div class="tile-body tile-footer">
-                    @if(session('response'))
-                        <div class="alert alert-success">
-                            {{ session('response') }}
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <!-- general form elements -->
+                <div class="card card-info card-outline">
+                    <div class="card-header">
+                        <h3 class="tile-title">Cash Book</h3>
+                        <div class="tile-body tile-footer">
+                            @if(session('response'))
+                                <div class="alert alert-success">
+                                    {{ session('response') }}
+                                </div>
+                            @endif
                         </div>
-                    @endif
                     <form method="post" action="{{ route('account.cashbook') }}">
                         @csrf
                         <div class="form-group row">
@@ -215,11 +229,12 @@
                 <div class="tile-footer">
                 </div>
             </div>
-            <div class="text-center">
-                <a href="{{ url('account/cashbook-print/'.$date_from.'/'.$date_to) }}" target="_blank" class="btn btn-sm btn-primary float-left">Print</a>
+{{--            <div class="text-center">--}}
+{{--                <a href="{{ url('account/cashbook-print/'.$date_from.'/'.$date_to) }}" target="_blank" class="btn btn-primary float-left">Print</a>--}}
+{{--            </div>--}}
             </div>
         </div>
-    </main>
+    </section>
 
     <!-- select2-->
     <script src="{!! asset('backend/js/plugins/select2.min.js') !!}"></script>

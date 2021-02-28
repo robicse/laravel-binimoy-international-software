@@ -157,8 +157,8 @@
                         <!-- /.card-body -->
                         <div class="card-footer clearfix">
                             <a href="{{route('admin.order.create')}}" class="btn btn-sm btn-info float-left">Place New Order</a>
-                            <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All
-                                Orders</a>
+{{--                            <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All--}}
+{{--                                Orders</a>--}}
                         </div>
                         <!-- /.card-footer -->
                     </div>
@@ -169,7 +169,7 @@
                         <span class="info-box-icon"><i class="fa fa-cc-visa"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Total Visa Available</span>
+                            <span class="info-box-text">  <a href="{{route('admin.visa-stock.index')}}">  Total Visa Available</a></span>
                             <span class="info-box-number">
                         @php
                             $total_quantity = 0;
@@ -184,7 +184,29 @@
                            //$net_visa_quantity = $total_quantity - $order_visa_sold;
                         @endphp
                     @endforeach
-                                {{--{{$net_visa_quantity}}--}}
+                                @php
+                                    $total_available_quantity2 = 0;
+                                @endphp
+                                @foreach($visaDetails as $total_visa_data)
+                                    @php
+                                        $agent_name = App\AgentDetail::find($total_visa_data->agent_id);
+
+                                        $quantity2 = App\VisaStock::find($total_visa_data->id);
+                                        //dd($quantity1);
+                                        //$quantity1->quantity;
+                                        $check_data2 = App\GroupWiseVisa::where('visa_stock_id',$total_visa_data->id)->sum('quantity');
+                                        //dd($check_data1);
+                                       //print_r($check_data1);
+                                if ($check_data2 ==''){
+                                    $available_quantity2 = $quantity2->quantity;
+                                    //dd($available_quantity1);
+                                }else{
+                                    $available_quantity2 = $quantity2->quantity - $check_data2;
+                                    $total_available_quantity2 += $available_quantity2;
+                                }
+                                    @endphp
+                                @endforeach
+                              <a href="{{route('admin.visa-stock.index')}}">  {{$total_available_quantity2}}</a>
                             </span>
                         </div>
                         <!-- /.info-box-content -->
@@ -194,8 +216,8 @@
                         <span class="info-box-icon"><i class="fa fa-heart-o"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Manpower</span>
-                            <span class="info-box-number"></span>
+                            <span class="info-box-text"><a href="{{route('admin.manpower.index')}}">Manpower</a></span>
+                            <span class="info-box-number"><a href="{{route('admin.manpower.index')}}">{{$manpower}}</a></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -204,41 +226,41 @@
                         <span class="info-box-icon"><i class="fa fa-plane"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Ready For Fly</span>
-                            <span class="info-box-number"></span>
+                            <span class="info-box-text"><a href="{{route('admin.ready.for.fly.index')}}">Ready For Fly</a></span>
+                            <span class="info-box-number"><a href="{{route('admin.ready.for.fly.index')}}">{{$readyToFly}}</a></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
-                    <div class="info-box mb-3 bg-primary">
-                        <span class="info-box-icon"><i class="fa fa-area-chart"></i></span>
+{{--                    <div class="info-box mb-3 bg-primary">--}}
+{{--                        <span class="info-box-icon"><i class="fa fa-area-chart"></i></span>--}}
 
-                        <div class="info-box-content">
-                            <span class="info-box-text">Total Income</span>
-                            <span class="info-box-number"></span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
+{{--                        <div class="info-box-content">--}}
+{{--                            <span class="info-box-text">Total Income</span>--}}
+{{--                            <span class="info-box-number"></span>--}}
+{{--                        </div>--}}
+{{--                        <!-- /.info-box-content -->--}}
+{{--                    </div>--}}
 
-                    <div class="info-box mb-3 bg-danger">
-                        <span class="info-box-icon"><i class="fa fa-line-chart"></i></span>
+{{--                    <div class="info-box mb-3 bg-danger">--}}
+{{--                        <span class="info-box-icon"><i class="fa fa-line-chart"></i></span>--}}
 
-                        <div class="info-box-content">
-                            <span class="info-box-text">Total Expense</span>
-                            <span class="info-box-number"></span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
+{{--                        <div class="info-box-content">--}}
+{{--                            <span class="info-box-text">Total Expense</span>--}}
+{{--                            <span class="info-box-number"></span>--}}
+{{--                        </div>--}}
+{{--                        <!-- /.info-box-content -->--}}
+{{--                    </div>--}}
 
-                    <div class="info-box mb-3 bg-info">
-                        <span class="info-box-icon"><i class="fa fa-bar-chart"></i></span>
+{{--                    <div class="info-box mb-3 bg-info">--}}
+{{--                        <span class="info-box-icon"><i class="fa fa-bar-chart"></i></span>--}}
 
-                        <div class="info-box-content">
-                            <span class="info-box-text">Net Profit/Loss</span>
-                            <span class="info-box-number"></span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
+{{--                        <div class="info-box-content">--}}
+{{--                            <span class="info-box-text">Net Profit/Loss</span>--}}
+{{--                            <span class="info-box-number"></span>--}}
+{{--                        </div>--}}
+{{--                        <!-- /.info-box-content -->--}}
+{{--                    </div>--}}
                 </div>
             </div>
             <!-- /.row -->
