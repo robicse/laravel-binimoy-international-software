@@ -84,13 +84,13 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <div class="page-header" style="text-align: left">
-                        <img src="{{ asset('backend/2020-11-21.png') }}" width="200px" height="150px" alt="header img">
-                    </div>
+{{--                    <div class="page-header" style="text-align: left">--}}
+{{--                        <img src="{{ asset('backend/2020-11-21.png') }}" width="200px" height="150px" alt="header img">--}}
+{{--                    </div>--}}
                     <div class="col-md-10" style="text-align: center; margin-left: 100px">
-                        <h1>StarIT LTD</h1>
-                        <p style="margin: 0px">BBTOA Building,4th Floor,Road no:9 ,South Kallyanpur, Mirpur,Dhaka-1207</p>
-                        <p style="margin: 0px"><b>Phone</b>:+88028091125 <span>, <b>Email</b>:info@123@starit.com, </span> <span><b>Web</b> :www.123starir.com</span> </p>
+                        <h1>Binimoy Int.</h1>
+                        <p style="margin: 0px">82, ShantiNagar (40/3 New Paltan),Dhaka-1217, Bangladesh</p>
+                        <p style="margin: 0px"><b>Phone</b>:(880) 1787-681170 <span>, <b>Email</b>:info@binimoyintl.com </span> </p>
                     </div>
 
                     <div class="page-footer">

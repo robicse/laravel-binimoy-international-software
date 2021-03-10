@@ -185,7 +185,7 @@
                 </div>
             </div>
                 <div class="text-center">
-                    <a href="{{ url('account/general-ledger-print/'.$general_ledger.'/'.$date_from.'/'.$date_to) }}" target="_blank" class="btn btn-sm btn-primary float-left">Print</a>
+                    <a href="{{ url('admin/account/general-ledger-print/'.$general_ledger.'/'.$date_from.'/'.$date_to) }}" target="_blank" class="btn btn-sm btn-primary float-left">Print</a>
                 </div>
                 </div>
             </div>

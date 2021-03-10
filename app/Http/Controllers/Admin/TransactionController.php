@@ -113,19 +113,19 @@ class TransactionController extends Controller
     }
 
 
-    public function transactionEdit($voucher_type_id, $voucher_no)
+    public function transactionEdit($voucher_type_id)
     {
-        //dd($voucher_no);
+       // dd('dd');
         $voucherTypes=VoucherType::all();
         $accounts = Account::all();
         //$transactions = Transaction::find($id);;
-        $transactions= Transaction::where('voucher_type_id',$voucher_type_id)->where('voucher_no',$voucher_no)->get();
+        $transactions= Transaction::where('voucher_type_id',$voucher_type_id)->get();
         //dd($transactions);
         return view('backend.admin.posting.edit',compact('voucherTypes','accounts','transactions'));
     }
 
 
-    public function transactionUpdate(Request $request, $voucher_type_id, $voucher_no)
+    public function transactionUpdate(Request $request, $voucher_type_id)
     {
 
         //dd($request->all());
@@ -161,7 +161,7 @@ class TransactionController extends Controller
 
                 $transactions = Transaction::find($transaction_id);
                 $transactions->voucher_type_id = $request->voucher_type_id;
-                $transactions->voucher_no = $request->voucher_no ;
+                //$transactions->voucher_no = $request->voucher_no ;
                 $transactions->date = $request->date;
                 $transactions->account_id = $account_id;
                 $transactions->account_name = $accounts->HeadName;
@@ -219,9 +219,9 @@ class TransactionController extends Controller
 //        return redirect()->route('transaction.index');
 //    }
 
-    public function voucher_invoice($voucher_type_id,$voucher_no)
+    public function voucher_invoice($voucher_type_id)
     {
-        $transaction_infos = Transaction::where('voucher_type_id',$voucher_type_id)->where('voucher_no',$voucher_no)->get();
+        $transaction_infos = Transaction::where('voucher_type_id',$voucher_type_id)->get();
 
         $transaction_count = count($transaction_infos);
 //dd($transaction_infos);
@@ -741,9 +741,9 @@ class TransactionController extends Controller
         return response()->json(['success'=>true,'data'=>$voucher_no]);
     }
 
-    public function transactionDelete($voucher_type_id, $voucher_no){
+    public function transactionDelete($voucher_type_id){
         //dd('bg');
-        DB::table('transactions')->where('voucher_type_id',$voucher_type_id)->where('voucher_no',$voucher_no)->delete();
+        DB::table('transactions')->where('voucher_type_id',$voucher_type_id)->delete();
 
         Toastr::success('Transactions Deleted Successfully', 'Success');
         return redirect()->route('admin.transaction.index');

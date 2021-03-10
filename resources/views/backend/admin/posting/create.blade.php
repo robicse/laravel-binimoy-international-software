@@ -53,10 +53,10 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label class="control-label text-right">Voucher No <small class="requiredCustom">*</small></label>
-                                            <input type="number" name="voucher_no" id="voucher_no" class="form-control" placeholder="Voucher No" readonly>
-                                        </div>
+{{--                                        <div class="col-md-4">--}}
+{{--                                            <label class="control-label text-right">Voucher No <small class="requiredCustom">*</small></label>--}}
+{{--                                            <input type="number" name="voucher_no" id="voucher_no" class="form-control" placeholder="Voucher No" readonly>--}}
+{{--                                        </div>--}}
                                         <div class="col-md-4">
                                             <label class="control-label text-right">Date  <small class="requiredCustom">*</small></label>
                                             <input type="text" name="date" class="datepicker form-control" value="{{date('Y-m-d')}}">
@@ -66,7 +66,7 @@
                             </tr>
                         </table>
                         <div class="table-responsive table-bordered">
-                            <input type="button" class="btn btn-primary add " style="margin-left: 804px;" value="Add More Product">
+                            <input type="button" class="btn btn-primary add " style="margin-left: 804px;" value="Add More">
                             <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>

@@ -101,10 +101,10 @@ Route::group(['middleware'=>['auth','admin']], function (){
 
    // Route::resource('admin/transaction','TransactionController');
     //Route::get('account/voucher-invoice/{voucher_no}/{transaction_date}','TransactionController@voucher_invoice');
-    Route::get('admin/account/voucher-invoice/{voucher_type_id}/{voucher_no}','Admin\TransactionController@voucher_invoice');
-    Route::post('admin/account/transaction-delete/{voucher_type_id}/{voucher_no}','Admin\TransactionController@transactionDelete');
-    Route::get('admin/account/transaction-edit/{voucher_type_id}/{voucher_no}','Admin\TransactionController@transactionEdit');
-    Route::post('admin/account/transaction-update/{voucher_type_id}/{voucher_no}','Admin\TransactionController@transactionUpdate');
+    Route::get('admin/account/voucher-invoice/{voucher_type_id}','Admin\TransactionController@voucher_invoice');
+    Route::post('admin/account/transaction-delete/{voucher_type_id}','Admin\TransactionController@transactionDelete');
+    Route::get('admin/account/transaction-edit/{voucher_type_id}','Admin\TransactionController@transactionEdit');
+    Route::post('admin/account/transaction-update/{voucher_type_id}','Admin\TransactionController@transactionUpdate');
     Route::get('admin/account/generalledger','Admin\TransactionController@general_ledger_form')->name('admin.account.generalledger');
     Route::get('admin/get-transaction-head/{id}','Admin\AccountController@transaction_head');
     Route::post('admin/account/general-ledger','Admin\TransactionController@view_general_ledger')->name('admin.account.general_ledger');

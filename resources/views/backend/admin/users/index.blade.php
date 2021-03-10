@@ -32,12 +32,12 @@
                     <div class="card-header">
                         <h3 class="card-title float-left">Users Details Lists</h3>
                         <div class="float-right">
-                            <a href="{{route('admin.users.create')}}">
-                                <button class="btn btn-success">
-                                    <i class="fa fa-plus-circle"></i>
-                                    Add
-                                </button>
-                            </a>
+{{--                            <a href="{{route('admin.users.create')}}">--}}
+{{--                                <button class="btn btn-success">--}}
+{{--                                    <i class="fa fa-plus-circle"></i>--}}
+{{--                                    Add--}}
+{{--                                </button>--}}
+{{--                            </a>--}}
                         </div>
                     </div>
                     <!-- /.card-header -->

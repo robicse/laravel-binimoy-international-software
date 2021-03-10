@@ -14,7 +14,7 @@
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="{{ route('transaction.index') }}" class="btn btn-sm btn-primary col-sm" type="button">All Posting </a>
+                    <a href="{{ route('admin.transaction.index') }}" class="btn btn-sm btn-primary col-sm" type="button">All Posting </a>
                 </li>
             </ul>
         </div>
@@ -27,7 +27,7 @@
                             {{ session('response') }}
                         </div>
                     @endif
-                    <form method="POST" action="{{ url('account/transaction-update/'.$transactions[0]->voucher_type_id.'/'.$transactions[0]->voucher_no)}}">
+                    <form method="POST" action="{{ url('admin/account/transaction-update/'.$transactions[0]->voucher_type_id)}}">
                         @csrf
 
                         <table class="table table-striped">
@@ -43,10 +43,10 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label class="control-label text-right">Voucher No <small class="requiredCustom">*</small></label>
-                                            <input type="number" name="voucher_no" id="voucher_no" class="form-control" value="{{$transactions[0] ->voucher_no}}" disabled>
-                                        </div>
+{{--                                        <div class="col-md-4">--}}
+{{--                                            <label class="control-label text-right">Voucher No <small class="requiredCustom">*</small></label>--}}
+{{--                                            <input type="number" name="voucher_no" id="voucher_no" class="form-control" value="{{$transactions[0] ->voucher_no}}" disabled>--}}
+{{--                                        </div>--}}
                                         <div class="col-md-4">
                                             <label class="control-label text-right">Date  <small class="requiredCustom">*</small></label>
                                             <input type="text" name="date" class="datepicker form-control" value="{{$transactions[0]->date}}">
@@ -55,7 +55,7 @@
                                 </th>
                             </tr>
                         </table>
-                        <input type="button" class="btn btn-primary add " style="margin-left: 804px;" value="Add More Product">
+{{--                        <input type="button" class="btn btn-primary add " style="margin-left: 804px;" value="Add More Product">--}}
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -73,7 +73,7 @@
                             <tr>
                                 <td width="5%" class="no">{{$key+1}}</td>
                                 <td>
-                                    <input type="text" class="form-control" name="transaction_id[]" id="transaction_id_1" value="{{$transaction->id}}">
+                                    <input type="hidden" class="form-control" name="transaction_id[]" id="transaction_id_1" value="{{$transaction->id}}">
                                     <select class="form-control account_id select2" name="account_id[]" id="account_id_1" required>
                                         <option value="">Select Account Name</option>
                                         @foreach($accounts as $account)
